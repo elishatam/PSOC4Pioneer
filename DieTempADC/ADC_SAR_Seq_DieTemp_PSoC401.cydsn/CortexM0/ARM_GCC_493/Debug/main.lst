@@ -1,0 +1,1267 @@
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	dataReady
+  18              		.bss
+  19              		.align	2
+  20              		.type	dataReady, %object
+  21              		.size	dataReady, 4
+  22              	dataReady:
+  23 0000 00000000 		.space	4
+  24              		.comm	result,4,4
+  25              		.global	timer_delay
+  26              		.align	2
+  27              		.type	timer_delay, %object
+  28              		.size	timer_delay, 4
+  29              	timer_delay:
+  30 0004 00000000 		.space	4
+  31              		.section	.text.ISR_TIMER_LOC,"ax",%progbits
+  32              		.align	2
+  33              		.global	ISR_TIMER_LOC
+  34              		.code	16
+  35              		.thumb_func
+  36              		.type	ISR_TIMER_LOC, %function
+  37              	ISR_TIMER_LOC:
+  38              	.LFB33:
+  39              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*******************************************************************************
+   2:.\main.c      **** * File Name: main.c
+   3:.\main.c      **** *
+   4:.\main.c      **** * Version: 1.10
+   5:.\main.c      **** *
+   6:.\main.c      **** * Description:
+   7:.\main.c      **** *  Sequencing SAR ADC and DieTemp datasheet example project.
+   8:.\main.c      **** *
+   9:.\main.c      **** * Note:
+  10:.\main.c      **** *  Pin_Vin pin (P0[4]) must be connected to the GND.
+  11:.\main.c      **** *  UART_tx pin (P0[5]) must be connected to the pin (P12[6]) of J8 header.
+  12:.\main.c      **** *  Verify that J9 is connected to 5V.
+  13:.\main.c      **** *
+  14:.\main.c      **** * Hardware Dependency:
+  15:.\main.c      **** *  PSoC4 Pioneer kit
+  16:.\main.c      **** *
+  17:.\main.c      **** ********************************************************************************
+  18:.\main.c      **** * Copyright 2013-2014, Cypress Semiconductor Corporation. All rights reserved.
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 2
+
+
+  19:.\main.c      **** * This software is owned by Cypress Semiconductor Corporation and is protected
+  20:.\main.c      **** * by and subject to worldwide patent and copyright laws and treaties.
+  21:.\main.c      **** * Therefore, you may use this software only as provided in the license agreement
+  22:.\main.c      **** * accompanying the software package from which you obtained this software.
+  23:.\main.c      **** * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  24:.\main.c      **** * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  25:.\main.c      **** * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  26:.\main.c      **** *******************************************************************************/
+  27:.\main.c      **** 
+  28:.\main.c      **** #include <device.h>
+  29:.\main.c      **** #include <stdio.h>
+  30:.\main.c      **** 
+  31:.\main.c      **** /* ADC SAR sequencer component header to access Vref value */
+  32:.\main.c      **** #include <ADC_SAR_SEQ.h>
+  33:.\main.c      **** 
+  34:.\main.c      **** #define CH0_N               (0x00u)
+  35:.\main.c      **** #define TEMP_CH             (0x01u)
+  36:.\main.c      **** #define DELAY_1SEC          (1000u)
+  37:.\main.c      **** 
+  38:.\main.c      **** /* Get actual Vref. value from ADC SAR sequencer */
+  39:.\main.c      **** #define ADC_VREF_VALUE_V    ((float)ADC_SAR_SEQ_DEFAULT_VREF_MV_VALUE/1000.0)
+  40:.\main.c      **** 
+  41:.\main.c      **** volatile uint32 dataReady = 0u;
+  42:.\main.c      **** volatile int16 result[ADC_SAR_SEQ_TOTAL_CHANNELS_NUM];
+  43:.\main.c      **** volatile uint32 timer_delay = 0u;
+  44:.\main.c      **** 
+  45:.\main.c      **** 
+  46:.\main.c      **** /******************************************************************************
+  47:.\main.c      **** * Function Name: ISR_TIMER_LOC
+  48:.\main.c      **** *******************************************************************************
+  49:.\main.c      **** *
+  50:.\main.c      **** * Summary:
+  51:.\main.c      **** *  Handle Interrupt Service Routine. Source - TIMER.
+  52:.\main.c      **** *
+  53:.\main.c      **** ******************************************************************************/
+  54:.\main.c      **** CY_ISR(ISR_TIMER_LOC)
+  55:.\main.c      **** {
+  40              		.loc 1 55 0
+  41              		.cfi_startproc
+  42 0000 80B5     		push	{r7, lr}
+  43              		.cfi_def_cfa_offset 8
+  44              		.cfi_offset 7, -8
+  45              		.cfi_offset 14, -4
+  46 0002 00AF     		add	r7, sp, #0
+  47              		.cfi_def_cfa_register 7
+  56:.\main.c      ****     timer_delay++;
+  48              		.loc 1 56 0
+  49 0004 0A4B     		ldr	r3, .L3
+  50 0006 1B68     		ldr	r3, [r3]
+  51 0008 5A1C     		add	r2, r3, #1
+  52 000a 094B     		ldr	r3, .L3
+  53 000c 1A60     		str	r2, [r3]
+  57:.\main.c      ****     
+  58:.\main.c      ****     /* Measures temperature once per second */
+  59:.\main.c      ****     if(timer_delay > DELAY_1SEC)
+  54              		.loc 1 59 0
+  55 000e 084B     		ldr	r3, .L3
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 3
+
+
+  56 0010 1A68     		ldr	r2, [r3]
+  57 0012 FA23     		mov	r3, #250
+  58 0014 9B00     		lsl	r3, r3, #2
+  59 0016 9A42     		cmp	r2, r3
+  60 0018 04D9     		bls	.L2
+  60:.\main.c      ****     {
+  61:.\main.c      ****         /* Enables injection channel for next scan */
+  62:.\main.c      ****         ADC_SAR_SEQ_EnableInjection();
+  61              		.loc 1 62 0
+  62 001a FFF7FEFF 		bl	ADC_SAR_SEQ_EnableInjection
+  63:.\main.c      ****         timer_delay = 0u;
+  63              		.loc 1 63 0
+  64 001e 044B     		ldr	r3, .L3
+  65 0020 0022     		mov	r2, #0
+  66 0022 1A60     		str	r2, [r3]
+  67              	.L2:
+  64:.\main.c      ****     }    
+  65:.\main.c      ****     
+  66:.\main.c      ****     /* Clears interrupt request from terminal count */
+  67:.\main.c      ****     PWM_ClearInterrupt(PWM_INTR_MASK_TC);
+  68              		.loc 1 67 0
+  69 0024 0120     		mov	r0, #1
+  70 0026 FFF7FEFF 		bl	PWM_ClearInterrupt
+  68:.\main.c      **** }
+  71              		.loc 1 68 0
+  72 002a BD46     		mov	sp, r7
+  73              		@ sp needed
+  74 002c 80BD     		pop	{r7, pc}
+  75              	.L4:
+  76 002e C046     		.align	2
+  77              	.L3:
+  78 0030 00000000 		.word	timer_delay
+  79              		.cfi_endproc
+  80              	.LFE33:
+  81              		.size	ISR_TIMER_LOC, .-ISR_TIMER_LOC
+  82              		.section	.text.ADC_SAR_SEQ_ISR_LOC,"ax",%progbits
+  83              		.align	2
+  84              		.global	ADC_SAR_SEQ_ISR_LOC
+  85              		.code	16
+  86              		.thumb_func
+  87              		.type	ADC_SAR_SEQ_ISR_LOC, %function
+  88              	ADC_SAR_SEQ_ISR_LOC:
+  89              	.LFB34:
+  69:.\main.c      **** 
+  70:.\main.c      **** 
+  71:.\main.c      **** /******************************************************************************
+  72:.\main.c      **** * Function Name: ADC_SAR_SEQ_ISR_LOC
+  73:.\main.c      **** *******************************************************************************
+  74:.\main.c      **** *
+  75:.\main.c      **** * Summary:
+  76:.\main.c      **** *  Handle Interrupt Service Routine. Source - ADC SAR Seq.
+  77:.\main.c      **** *
+  78:.\main.c      **** ******************************************************************************/
+  79:.\main.c      **** CY_ISR(ADC_SAR_SEQ_ISR_LOC)
+  80:.\main.c      **** {
+  90              		.loc 1 80 0
+  91              		.cfi_startproc
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 4
+
+
+  92 0000 80B5     		push	{r7, lr}
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 7, -8
+  95              		.cfi_offset 14, -4
+  96 0002 82B0     		sub	sp, sp, #8
+  97              		.cfi_def_cfa_offset 16
+  98 0004 00AF     		add	r7, sp, #0
+  99              		.cfi_def_cfa_register 7
+  81:.\main.c      ****     uint32 intr_status;
+  82:.\main.c      ****     uint32 range_status;
+  83:.\main.c      **** 
+  84:.\main.c      ****     /* Read interrupt status registers */
+  85:.\main.c      ****     intr_status = ADC_SAR_SEQ_SAR_INTR_MASKED_REG;
+ 100              		.loc 1 85 0
+ 101 0006 1E4B     		ldr	r3, .L9
+ 102 0008 1B68     		ldr	r3, [r3]
+ 103 000a 7B60     		str	r3, [r7, #4]
+  86:.\main.c      ****     /* Check for End of Scan interrupt */
+  87:.\main.c      ****     if((intr_status & ADC_SAR_SEQ_EOS_MASK) != 0u)
+ 104              		.loc 1 87 0
+ 105 000c 7B68     		ldr	r3, [r7, #4]
+ 106 000e 0122     		mov	r2, #1
+ 107 0010 1340     		and	r3, r2
+ 108 0012 1DD0     		beq	.L6
+  88:.\main.c      ****     {
+  89:.\main.c      ****         /* Read range detect status */
+  90:.\main.c      ****         range_status = ADC_SAR_SEQ_SAR_RANGE_INTR_MASKED_REG;
+ 109              		.loc 1 90 0
+ 110 0014 1B4B     		ldr	r3, .L9+4
+ 111 0016 1B68     		ldr	r3, [r3]
+ 112 0018 3B60     		str	r3, [r7]
+  91:.\main.c      ****         /* Verify that the conversion result met the condition Low_Limit <= Result < High_Limit  */
+  92:.\main.c      ****         if((range_status & (uint32)(1ul << CH0_N)) != 0u) 
+ 113              		.loc 1 92 0
+ 114 001a 3B68     		ldr	r3, [r7]
+ 115 001c 0122     		mov	r2, #1
+ 116 001e 1340     		and	r3, r2
+ 117 0020 0DD0     		beq	.L7
+  93:.\main.c      ****         {
+  94:.\main.c      ****             /* Read conversion result */
+  95:.\main.c      ****             result[CH0_N] = ADC_SAR_SEQ_GetResult16(CH0_N);
+ 118              		.loc 1 95 0
+ 119 0022 0020     		mov	r0, #0
+ 120 0024 FFF7FEFF 		bl	ADC_SAR_SEQ_GetResult16
+ 121 0028 031C     		mov	r3, r0
+ 122 002a 1A1C     		mov	r2, r3
+ 123 002c 164B     		ldr	r3, .L9+8
+ 124 002e 1A80     		strh	r2, [r3]
+  96:.\main.c      ****             /* Set PWM compare from channel0 */
+  97:.\main.c      ****             PWM_WriteCompare(result[CH0_N]);
+ 125              		.loc 1 97 0
+ 126 0030 154B     		ldr	r3, .L9+8
+ 127 0032 1B88     		ldrh	r3, [r3]
+ 128 0034 9BB2     		uxth	r3, r3
+ 129 0036 1BB2     		sxth	r3, r3
+ 130 0038 181C     		mov	r0, r3
+ 131 003a FFF7FEFF 		bl	PWM_WriteCompare
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 5
+
+
+ 132              	.L7:
+  98:.\main.c      ****         }    
+  99:.\main.c      **** 
+ 100:.\main.c      ****         /* Clear range detect status */
+ 101:.\main.c      ****         ADC_SAR_SEQ_SAR_RANGE_INTR_REG = range_status;
+ 133              		.loc 1 101 0
+ 134 003e 134B     		ldr	r3, .L9+12
+ 135 0040 3A68     		ldr	r2, [r7]
+ 136 0042 1A60     		str	r2, [r3]
+ 102:.\main.c      ****         dataReady |= ADC_SAR_SEQ_EOS_MASK;
+ 137              		.loc 1 102 0
+ 138 0044 124B     		ldr	r3, .L9+16
+ 139 0046 1B68     		ldr	r3, [r3]
+ 140 0048 0122     		mov	r2, #1
+ 141 004a 1A43     		orr	r2, r3
+ 142 004c 104B     		ldr	r3, .L9+16
+ 143 004e 1A60     		str	r2, [r3]
+ 144              	.L6:
+ 103:.\main.c      ****     }    
+ 104:.\main.c      **** 
+ 105:.\main.c      ****     /* Check for Injection End of Conversion */
+ 106:.\main.c      ****     if((intr_status & ADC_SAR_SEQ_INJ_EOC_MASK) != 0u)
+ 145              		.loc 1 106 0
+ 146 0050 7B68     		ldr	r3, [r7, #4]
+ 147 0052 1022     		mov	r2, #16
+ 148 0054 1340     		and	r3, r2
+ 149 0056 0CD0     		beq	.L8
+ 107:.\main.c      ****     {
+ 108:.\main.c      ****         result[TEMP_CH] = ADC_SAR_SEQ_GetResult16(TEMP_CH);
+ 150              		.loc 1 108 0
+ 151 0058 0120     		mov	r0, #1
+ 152 005a FFF7FEFF 		bl	ADC_SAR_SEQ_GetResult16
+ 153 005e 031C     		mov	r3, r0
+ 154 0060 1A1C     		mov	r2, r3
+ 155 0062 094B     		ldr	r3, .L9+8
+ 156 0064 5A80     		strh	r2, [r3, #2]
+ 109:.\main.c      ****         dataReady |= ADC_SAR_SEQ_INJ_EOC_MASK;
+ 157              		.loc 1 109 0
+ 158 0066 0A4B     		ldr	r3, .L9+16
+ 159 0068 1B68     		ldr	r3, [r3]
+ 160 006a 1022     		mov	r2, #16
+ 161 006c 1A43     		orr	r2, r3
+ 162 006e 084B     		ldr	r3, .L9+16
+ 163 0070 1A60     		str	r2, [r3]
+ 164              	.L8:
+ 110:.\main.c      ****     }    
+ 111:.\main.c      **** 
+ 112:.\main.c      ****     /* Clear handled interrupt */
+ 113:.\main.c      ****     ADC_SAR_SEQ_SAR_INTR_REG = intr_status;
+ 165              		.loc 1 113 0
+ 166 0072 084B     		ldr	r3, .L9+20
+ 167 0074 7A68     		ldr	r2, [r7, #4]
+ 168 0076 1A60     		str	r2, [r3]
+ 114:.\main.c      **** }
+ 169              		.loc 1 114 0
+ 170 0078 BD46     		mov	sp, r7
+ 171 007a 02B0     		add	sp, sp, #8
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 6
+
+
+ 172              		@ sp needed
+ 173 007c 80BD     		pop	{r7, pc}
+ 174              	.L10:
+ 175 007e C046     		.align	2
+ 176              	.L9:
+ 177 0080 1C021A40 		.word	1075446300
+ 178 0084 3C021A40 		.word	1075446332
+ 179 0088 00000000 		.word	result
+ 180 008c 30021A40 		.word	1075446320
+ 181 0090 00000000 		.word	dataReady
+ 182 0094 10021A40 		.word	1075446288
+ 183              		.cfi_endproc
+ 184              	.LFE34:
+ 185              		.size	ADC_SAR_SEQ_ISR_LOC, .-ADC_SAR_SEQ_ISR_LOC
+ 186              		.section	.rodata
+ 187              		.align	2
+ 188              	.LC3:
+ 189 0000 53746172 		.ascii	"Starting temperature measurement...\000"
+ 189      74696E67 
+ 189      2074656D 
+ 189      70657261 
+ 189      74757265 
+ 190              		.align	2
+ 191              	.LC9:
+ 192 0024 54656D70 		.ascii	"Temperature value: %dC\000"
+ 192      65726174 
+ 192      75726520 
+ 192      76616C75 
+ 192      653A2025 
+ 193 003b 00       		.align	2
+ 194              	.LC11:
+ 195 003c 41444320 		.ascii	"ADC measured voltage: %dmV\000"
+ 195      6D656173 
+ 195      75726564 
+ 195      20766F6C 
+ 195      74616765 
+ 196 0057 00       		.section	.text.main,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	main
+ 199              		.code	16
+ 200              		.thumb_func
+ 201              		.type	main, %function
+ 202              	main:
+ 203              	.LFB35:
+ 115:.\main.c      **** 
+ 116:.\main.c      **** 
+ 117:.\main.c      **** /*******************************************************************************
+ 118:.\main.c      **** * Function Name: main
+ 119:.\main.c      **** ********************************************************************************
+ 120:.\main.c      **** *
+ 121:.\main.c      **** * Summary:
+ 122:.\main.c      **** *
+ 123:.\main.c      **** * Parameters:
+ 124:.\main.c      **** *  None.
+ 125:.\main.c      **** *
+ 126:.\main.c      **** * Return:
+ 127:.\main.c      **** *  None.
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 7
+
+
+ 128:.\main.c      **** *
+ 129:.\main.c      **** *******************************************************************************/
+ 130:.\main.c      **** int main()
+ 131:.\main.c      **** {
+ 204              		.loc 1 131 0
+ 205              		.cfi_startproc
+ 206 0000 90B5     		push	{r4, r7, lr}
+ 207              		.cfi_def_cfa_offset 12
+ 208              		.cfi_offset 4, -12
+ 209              		.cfi_offset 7, -8
+ 210              		.cfi_offset 14, -4
+ 211 0002 C3B0     		sub	sp, sp, #268
+ 212              		.cfi_def_cfa_offset 280
+ 213 0004 00AF     		add	r7, sp, #0
+ 214              		.cfi_def_cfa_register 7
+ 132:.\main.c      ****     int16 res = 0;
+ 215              		.loc 1 132 0
+ 216 0006 FB1D     		add	r3, r7, #7
+ 217 0008 FF33     		add	r3, r3, #255
+ 218 000a 0022     		mov	r2, #0
+ 219 000c 1A80     		strh	r2, [r3]
+ 133:.\main.c      ****     int32 temperature;
+ 134:.\main.c      ****     char  uartLine[250];
+ 135:.\main.c      ****     int16 ADCCountsCorrected;
+ 136:.\main.c      **** 
+ 137:.\main.c      ****     /* Initialize the UART */
+ 138:.\main.c      ****     UART_Start();
+ 220              		.loc 1 138 0
+ 221 000e FFF7FEFF 		bl	UART_Start
+ 139:.\main.c      ****     UART_PutCRLF();
+ 222              		.loc 1 139 0
+ 223 0012 FFF7FEFF 		bl	UART_PutCRLF
+ 140:.\main.c      ****     UART_PutCRLF();
+ 224              		.loc 1 140 0
+ 225 0016 FFF7FEFF 		bl	UART_PutCRLF
+ 141:.\main.c      ****     UART_PutString("Starting temperature measurement...");
+ 226              		.loc 1 141 0
+ 227 001a 384B     		ldr	r3, .L15
+ 228 001c 181C     		mov	r0, r3
+ 229 001e FFF7FEFF 		bl	UART_PutString
+ 142:.\main.c      ****     UART_PutCRLF();
+ 230              		.loc 1 142 0
+ 231 0022 FFF7FEFF 		bl	UART_PutCRLF
+ 143:.\main.c      ****     
+ 144:.\main.c      ****     PWM_Start();
+ 232              		.loc 1 144 0
+ 233 0026 FFF7FEFF 		bl	PWM_Start
+ 145:.\main.c      ****     PWM_TriggerCommand(PWM_MASK, PWM_CMD_START);
+ 234              		.loc 1 145 0
+ 235 002a 0120     		mov	r0, #1
+ 236 002c 1821     		mov	r1, #24
+ 237 002e FFF7FEFF 		bl	PWM_TriggerCommand
+ 146:.\main.c      **** 
+ 147:.\main.c      ****     /* Init and start sequencing SAR ADC */
+ 148:.\main.c      ****     ADC_SAR_SEQ_Start();
+ 238              		.loc 1 148 0
+ 239 0032 FFF7FEFF 		bl	ADC_SAR_SEQ_Start
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 8
+
+
+ 149:.\main.c      ****     ADC_SAR_SEQ_StartConvert();
+ 240              		.loc 1 149 0
+ 241 0036 FFF7FEFF 		bl	ADC_SAR_SEQ_StartConvert
+ 150:.\main.c      ****     /* Enable interrupt and set interrupt handler to local routine */
+ 151:.\main.c      ****     ADC_SAR_SEQ_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
+ 242              		.loc 1 151 0
+ 243 003a 314B     		ldr	r3, .L15+4
+ 244 003c 181C     		mov	r0, r3
+ 245 003e FFF7FEFF 		bl	ADC_SAR_SEQ_IRQ_StartEx
+ 152:.\main.c      ****     
+ 153:.\main.c      ****     /* Init interrupt from timer to measure the temperature rarely */
+ 154:.\main.c      ****     ISR_TIMER_StartEx(ISR_TIMER_LOC);
+ 246              		.loc 1 154 0
+ 247 0042 304B     		ldr	r3, .L15+8
+ 248 0044 181C     		mov	r0, r3
+ 249 0046 FFF7FEFF 		bl	ISR_TIMER_StartEx
+ 155:.\main.c      **** 
+ 156:.\main.c      ****     CyGlobalIntEnable;
+ 250              		.loc 1 156 0
+ 251              	@ 156 ".\main.c" 1
+ 252 004a 62B6     		CPSIE   i
+ 253              	@ 0 "" 2
+ 254              		.code	16
+ 255              	.L14:
+ 157:.\main.c      **** 
+ 158:.\main.c      ****     for(;;)
+ 159:.\main.c      ****     {
+ 160:.\main.c      ****         /* When conversion of sequencing channels has completed */
+ 161:.\main.c      ****         if((dataReady & ADC_SAR_SEQ_EOS_MASK) != 0u)
+ 256              		.loc 1 161 0
+ 257 004c 2E4B     		ldr	r3, .L15+12
+ 258 004e 1B68     		ldr	r3, [r3]
+ 259 0050 0122     		mov	r2, #1
+ 260 0052 1340     		and	r3, r2
+ 261 0054 12D0     		beq	.L12
+ 162:.\main.c      ****         {
+ 163:.\main.c      ****             /* Get voltage, measured by ADC */
+ 164:.\main.c      ****             dataReady &= ~ADC_SAR_SEQ_EOS_MASK;
+ 262              		.loc 1 164 0
+ 263 0056 2C4B     		ldr	r3, .L15+12
+ 264 0058 1B68     		ldr	r3, [r3]
+ 265 005a 0122     		mov	r2, #1
+ 266 005c 9343     		bic	r3, r2
+ 267 005e 1A1C     		mov	r2, r3
+ 268 0060 294B     		ldr	r3, .L15+12
+ 269 0062 1A60     		str	r2, [r3]
+ 165:.\main.c      ****             res = ADC_SAR_SEQ_CountsTo_mVolts(CH0_N, result[CH0_N]);
+ 270              		.loc 1 165 0
+ 271 0064 294B     		ldr	r3, .L15+16
+ 272 0066 1B88     		ldrh	r3, [r3]
+ 273 0068 9BB2     		uxth	r3, r3
+ 274 006a FC1D     		add	r4, r7, #7
+ 275 006c FF34     		add	r4, r4, #255
+ 276 006e 1BB2     		sxth	r3, r3
+ 277 0070 0020     		mov	r0, #0
+ 278 0072 191C     		mov	r1, r3
+ 279 0074 FFF7FEFF 		bl	ADC_SAR_SEQ_CountsTo_mVolts
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 9
+
+
+ 280 0078 031C     		mov	r3, r0
+ 281 007a 2380     		strh	r3, [r4]
+ 282              	.L12:
+ 166:.\main.c      ****         }    
+ 167:.\main.c      ****         
+ 168:.\main.c      ****         /* When conversion of the injection channel has completed */
+ 169:.\main.c      ****         if((dataReady & ADC_SAR_SEQ_INJ_EOC_MASK) != 0u)
+ 283              		.loc 1 169 0
+ 284 007c 224B     		ldr	r3, .L15+12
+ 285 007e 1B68     		ldr	r3, [r3]
+ 286 0080 1022     		mov	r2, #16
+ 287 0082 1340     		and	r3, r2
+ 288 0084 39D0     		beq	.L13
+ 170:.\main.c      ****         {
+ 171:.\main.c      ****             dataReady &= ~ADC_SAR_SEQ_INJ_EOC_MASK;
+ 289              		.loc 1 171 0
+ 290 0086 204B     		ldr	r3, .L15+12
+ 291 0088 1B68     		ldr	r3, [r3]
+ 292 008a 1022     		mov	r2, #16
+ 293 008c 9343     		bic	r3, r2
+ 294 008e 1A1C     		mov	r2, r3
+ 295 0090 1D4B     		ldr	r3, .L15+12
+ 296 0092 1A60     		str	r2, [r3]
+ 172:.\main.c      **** 
+ 173:.\main.c      ****             /******************************************************************************
+ 174:.\main.c      ****             * Adjust data from ADC with respect to Vref value.
+ 175:.\main.c      ****             * This adjustment is to be done if Vref is set to any other than
+ 176:.\main.c      ****             * internal 1.024V.
+ 177:.\main.c      ****             * For more detailed description see Functional Description section
+ 178:.\main.c      ****             * of DieTemp P4 datasheet.
+ 179:.\main.c      ****             *******************************************************************************/
+ 180:.\main.c      ****             ADCCountsCorrected = result[TEMP_CH]*((int16)((float)ADC_VREF_VALUE_V/1.024));
+ 297              		.loc 1 180 0
+ 298 0094 7B1D     		add	r3, r7, #5
+ 299 0096 FF33     		add	r3, r3, #255
+ 300 0098 1C4A     		ldr	r2, .L15+16
+ 301 009a 5288     		ldrh	r2, [r2, #2]
+ 302 009c 1A80     		strh	r2, [r3]
+ 181:.\main.c      ****             
+ 182:.\main.c      ****             temperature = DieTemp_CountsTo_Celsius(ADCCountsCorrected);
+ 303              		.loc 1 182 0
+ 304 009e 7B1D     		add	r3, r7, #5
+ 305 00a0 FF33     		add	r3, r3, #255
+ 306 00a2 0022     		mov	r2, #0
+ 307 00a4 9B5E     		ldrsh	r3, [r3, r2]
+ 308 00a6 181C     		mov	r0, r3
+ 309 00a8 FFF7FEFF 		bl	DieTemp_CountsTo_Celsius
+ 310 00ac 031C     		mov	r3, r0
+ 311 00ae 7A1C     		add	r2, r7, #1
+ 312 00b0 FF32     		add	r2, r2, #255
+ 313 00b2 1360     		str	r3, [r2]
+ 183:.\main.c      **** 
+ 184:.\main.c      ****             /* Print temperature value to UART */
+ 185:.\main.c      ****             sprintf(
+ 186:.\main.c      ****                     uartLine, "Temperature value: %dC",
+ 187:.\main.c      ****                     (int16) temperature
+ 314              		.loc 1 187 0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 10
+
+
+ 315 00b4 7B1C     		add	r3, r7, #1
+ 316 00b6 FF33     		add	r3, r3, #255
+ 317 00b8 1B68     		ldr	r3, [r3]
+ 318 00ba 9BB2     		uxth	r3, r3
+ 185:.\main.c      ****                     uartLine, "Temperature value: %dC",
+ 319              		.loc 1 185 0
+ 320 00bc 1BB2     		sxth	r3, r3
+ 321 00be 391D     		add	r1, r7, #4
+ 322 00c0 134A     		ldr	r2, .L15+20
+ 323 00c2 081C     		mov	r0, r1
+ 324 00c4 111C     		mov	r1, r2
+ 325 00c6 1A1C     		mov	r2, r3
+ 326 00c8 FFF7FEFF 		bl	sprintf
+ 188:.\main.c      ****                     );
+ 189:.\main.c      ****             
+ 190:.\main.c      ****             UART_PutString(uartLine);
+ 327              		.loc 1 190 0
+ 328 00cc 3B1D     		add	r3, r7, #4
+ 329 00ce 181C     		mov	r0, r3
+ 330 00d0 FFF7FEFF 		bl	UART_PutString
+ 191:.\main.c      ****             UART_PutCRLF();
+ 331              		.loc 1 191 0
+ 332 00d4 FFF7FEFF 		bl	UART_PutCRLF
+ 192:.\main.c      ****             
+ 193:.\main.c      ****             /* Print voltage value to UART */
+ 194:.\main.c      ****             sprintf(
+ 195:.\main.c      ****                 uartLine, "ADC measured voltage: %dmV",
+ 196:.\main.c      ****                 (uint16) res
+ 333              		.loc 1 196 0
+ 334 00d8 FB1D     		add	r3, r7, #7
+ 335 00da FF33     		add	r3, r3, #255
+ 336 00dc 1B88     		ldrh	r3, [r3]
+ 194:.\main.c      ****                 uartLine, "ADC measured voltage: %dmV",
+ 337              		.loc 1 194 0
+ 338 00de 1C1C     		mov	r4, r3
+ 339 00e0 3A1D     		add	r2, r7, #4
+ 340 00e2 0C4B     		ldr	r3, .L15+24
+ 341 00e4 101C     		mov	r0, r2
+ 342 00e6 191C     		mov	r1, r3
+ 343 00e8 221C     		mov	r2, r4
+ 344 00ea FFF7FEFF 		bl	sprintf
+ 197:.\main.c      ****                 );
+ 198:.\main.c      ****             
+ 199:.\main.c      ****             UART_PutString(uartLine);
+ 345              		.loc 1 199 0
+ 346 00ee 3B1D     		add	r3, r7, #4
+ 347 00f0 181C     		mov	r0, r3
+ 348 00f2 FFF7FEFF 		bl	UART_PutString
+ 200:.\main.c      ****             UART_PutCRLF();
+ 349              		.loc 1 200 0
+ 350 00f6 FFF7FEFF 		bl	UART_PutCRLF
+ 351              	.L13:
+ 201:.\main.c      ****         }
+ 202:.\main.c      ****     }
+ 352              		.loc 1 202 0
+ 353 00fa A7E7     		b	.L14
+ 354              	.L16:
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 11
+
+
+ 355              		.align	2
+ 356              	.L15:
+ 357 00fc 00000000 		.word	.LC3
+ 358 0100 00000000 		.word	ADC_SAR_SEQ_ISR_LOC
+ 359 0104 00000000 		.word	ISR_TIMER_LOC
+ 360 0108 00000000 		.word	dataReady
+ 361 010c 00000000 		.word	result
+ 362 0110 24000000 		.word	.LC9
+ 363 0114 3C000000 		.word	.LC11
+ 364              		.cfi_endproc
+ 365              	.LFE35:
+ 366              		.size	main, .-main
+ 367              		.text
+ 368              	.Letext0:
+ 369              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 370              		.section	.debug_info,"",%progbits
+ 371              	.Ldebug_info0:
+ 372 0000 AF010000 		.4byte	0x1af
+ 373 0004 0400     		.2byte	0x4
+ 374 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 375 000a 04       		.byte	0x4
+ 376 000b 01       		.uleb128 0x1
+ 377 000c 93000000 		.4byte	.LASF28
+ 378 0010 01       		.byte	0x1
+ 379 0011 8A000000 		.4byte	.LASF29
+ 380 0015 BC010000 		.4byte	.LASF30
+ 381 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 382 001d 00000000 		.4byte	0
+ 383 0021 00000000 		.4byte	.Ldebug_line0
+ 384 0025 02       		.uleb128 0x2
+ 385 0026 01       		.byte	0x1
+ 386 0027 06       		.byte	0x6
+ 387 0028 11020000 		.4byte	.LASF0
+ 388 002c 02       		.uleb128 0x2
+ 389 002d 01       		.byte	0x1
+ 390 002e 08       		.byte	0x8
+ 391 002f 4B000000 		.4byte	.LASF1
+ 392 0033 02       		.uleb128 0x2
+ 393 0034 02       		.byte	0x2
+ 394 0035 05       		.byte	0x5
+ 395 0036 A9010000 		.4byte	.LASF2
+ 396 003a 02       		.uleb128 0x2
+ 397 003b 02       		.byte	0x2
+ 398 003c 07       		.byte	0x7
+ 399 003d 0C000000 		.4byte	.LASF3
+ 400 0041 02       		.uleb128 0x2
+ 401 0042 04       		.byte	0x4
+ 402 0043 05       		.byte	0x5
+ 403 0044 B3010000 		.4byte	.LASF4
+ 404 0048 02       		.uleb128 0x2
+ 405 0049 04       		.byte	0x4
+ 406 004a 07       		.byte	0x7
+ 407 004b 5F000000 		.4byte	.LASF5
+ 408 004f 02       		.uleb128 0x2
+ 409 0050 08       		.byte	0x8
+ 410 0051 05       		.byte	0x5
+ 411 0052 7F010000 		.4byte	.LASF6
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 12
+
+
+ 412 0056 02       		.uleb128 0x2
+ 413 0057 08       		.byte	0x8
+ 414 0058 07       		.byte	0x7
+ 415 0059 4F010000 		.4byte	.LASF7
+ 416 005d 03       		.uleb128 0x3
+ 417 005e 04       		.byte	0x4
+ 418 005f 05       		.byte	0x5
+ 419 0060 696E7400 		.ascii	"int\000"
+ 420 0064 02       		.uleb128 0x2
+ 421 0065 04       		.byte	0x4
+ 422 0066 07       		.byte	0x7
+ 423 0067 42010000 		.4byte	.LASF8
+ 424 006b 04       		.uleb128 0x4
+ 425 006c 21010000 		.4byte	.LASF9
+ 426 0070 02       		.byte	0x2
+ 427 0071 C3       		.byte	0xc3
+ 428 0072 3A000000 		.4byte	0x3a
+ 429 0076 04       		.uleb128 0x4
+ 430 0077 36010000 		.4byte	.LASF10
+ 431 007b 02       		.byte	0x2
+ 432 007c C4       		.byte	0xc4
+ 433 007d 48000000 		.4byte	0x48
+ 434 0081 04       		.uleb128 0x4
+ 435 0082 59000000 		.4byte	.LASF11
+ 436 0086 02       		.byte	0x2
+ 437 0087 C6       		.byte	0xc6
+ 438 0088 33000000 		.4byte	0x33
+ 439 008c 04       		.uleb128 0x4
+ 440 008d 7D000000 		.4byte	.LASF12
+ 441 0091 02       		.byte	0x2
+ 442 0092 C7       		.byte	0xc7
+ 443 0093 41000000 		.4byte	0x41
+ 444 0097 02       		.uleb128 0x2
+ 445 0098 04       		.byte	0x4
+ 446 0099 04       		.byte	0x4
+ 447 009a 06000000 		.4byte	.LASF13
+ 448 009e 02       		.uleb128 0x2
+ 449 009f 08       		.byte	0x8
+ 450 00a0 04       		.byte	0x4
+ 451 00a1 83000000 		.4byte	.LASF14
+ 452 00a5 02       		.uleb128 0x2
+ 453 00a6 01       		.byte	0x1
+ 454 00a7 08       		.byte	0x8
+ 455 00a8 8D010000 		.4byte	.LASF15
+ 456 00ac 05       		.uleb128 0x5
+ 457 00ad 00000000 		.4byte	.LASF16
+ 458 00b1 02       		.byte	0x2
+ 459 00b2 6E01     		.2byte	0x16e
+ 460 00b4 B8000000 		.4byte	0xb8
+ 461 00b8 06       		.uleb128 0x6
+ 462 00b9 76000000 		.4byte	0x76
+ 463 00bd 02       		.uleb128 0x2
+ 464 00be 04       		.byte	0x4
+ 465 00bf 07       		.byte	0x7
+ 466 00c0 76010000 		.4byte	.LASF17
+ 467 00c4 07       		.uleb128 0x7
+ 468 00c5 28010000 		.4byte	.LASF31
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 13
+
+
+ 469 00c9 01       		.byte	0x1
+ 470 00ca 36       		.byte	0x36
+ 471 00cb 00000000 		.4byte	.LFB33
+ 472 00cf 34000000 		.4byte	.LFE33-.LFB33
+ 473 00d3 01       		.uleb128 0x1
+ 474 00d4 9C       		.byte	0x9c
+ 475 00d5 08       		.uleb128 0x8
+ 476 00d6 1F000000 		.4byte	.LASF20
+ 477 00da 01       		.byte	0x1
+ 478 00db 4F       		.byte	0x4f
+ 479 00dc 00000000 		.4byte	.LFB34
+ 480 00e0 98000000 		.4byte	.LFE34-.LFB34
+ 481 00e4 01       		.uleb128 0x1
+ 482 00e5 9C       		.byte	0x9c
+ 483 00e6 07010000 		.4byte	0x107
+ 484 00ea 09       		.uleb128 0x9
+ 485 00eb 71000000 		.4byte	.LASF18
+ 486 00ef 01       		.byte	0x1
+ 487 00f0 51       		.byte	0x51
+ 488 00f1 76000000 		.4byte	0x76
+ 489 00f5 02       		.uleb128 0x2
+ 490 00f6 91       		.byte	0x91
+ 491 00f7 74       		.sleb128 -12
+ 492 00f8 09       		.uleb128 0x9
+ 493 00f9 92010000 		.4byte	.LASF19
+ 494 00fd 01       		.byte	0x1
+ 495 00fe 52       		.byte	0x52
+ 496 00ff 76000000 		.4byte	0x76
+ 497 0103 02       		.uleb128 0x2
+ 498 0104 91       		.byte	0x91
+ 499 0105 70       		.sleb128 -16
+ 500 0106 00       		.byte	0
+ 501 0107 0A       		.uleb128 0xa
+ 502 0108 3D010000 		.4byte	.LASF21
+ 503 010c 01       		.byte	0x1
+ 504 010d 82       		.byte	0x82
+ 505 010e 5D000000 		.4byte	0x5d
+ 506 0112 00000000 		.4byte	.LFB35
+ 507 0116 18010000 		.4byte	.LFE35-.LFB35
+ 508 011a 01       		.uleb128 0x1
+ 509 011b 9C       		.byte	0x9c
+ 510 011c 5A010000 		.4byte	0x15a
+ 511 0120 0B       		.uleb128 0xb
+ 512 0121 72657300 		.ascii	"res\000"
+ 513 0125 01       		.byte	0x1
+ 514 0126 84       		.byte	0x84
+ 515 0127 81000000 		.4byte	0x81
+ 516 012b 02       		.uleb128 0x2
+ 517 012c 91       		.byte	0x91
+ 518 012d 6E       		.sleb128 -18
+ 519 012e 09       		.uleb128 0x9
+ 520 012f 3F000000 		.4byte	.LASF22
+ 521 0133 01       		.byte	0x1
+ 522 0134 85       		.byte	0x85
+ 523 0135 8C000000 		.4byte	0x8c
+ 524 0139 02       		.uleb128 0x2
+ 525 013a 91       		.byte	0x91
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 14
+
+
+ 526 013b 68       		.sleb128 -24
+ 527 013c 09       		.uleb128 0x9
+ 528 013d 6D010000 		.4byte	.LASF23
+ 529 0141 01       		.byte	0x1
+ 530 0142 86       		.byte	0x86
+ 531 0143 5A010000 		.4byte	0x15a
+ 532 0147 03       		.uleb128 0x3
+ 533 0148 91       		.byte	0x91
+ 534 0149 EC7D     		.sleb128 -276
+ 535 014b 09       		.uleb128 0x9
+ 536 014c 1D020000 		.4byte	.LASF24
+ 537 0150 01       		.byte	0x1
+ 538 0151 87       		.byte	0x87
+ 539 0152 81000000 		.4byte	0x81
+ 540 0156 02       		.uleb128 0x2
+ 541 0157 91       		.byte	0x91
+ 542 0158 6C       		.sleb128 -20
+ 543 0159 00       		.byte	0
+ 544 015a 0C       		.uleb128 0xc
+ 545 015b A5000000 		.4byte	0xa5
+ 546 015f 6A010000 		.4byte	0x16a
+ 547 0163 0D       		.uleb128 0xd
+ 548 0164 BD000000 		.4byte	0xbd
+ 549 0168 F9       		.byte	0xf9
+ 550 0169 00       		.byte	0
+ 551 016a 0E       		.uleb128 0xe
+ 552 016b 9F010000 		.4byte	.LASF25
+ 553 016f 01       		.byte	0x1
+ 554 0170 29       		.byte	0x29
+ 555 0171 B8000000 		.4byte	0xb8
+ 556 0175 05       		.uleb128 0x5
+ 557 0176 03       		.byte	0x3
+ 558 0177 00000000 		.4byte	dataReady
+ 559 017b 0C       		.uleb128 0xc
+ 560 017c 81000000 		.4byte	0x81
+ 561 0180 8B010000 		.4byte	0x18b
+ 562 0184 0D       		.uleb128 0xd
+ 563 0185 BD000000 		.4byte	0xbd
+ 564 0189 01       		.byte	0x1
+ 565 018a 00       		.byte	0
+ 566 018b 0E       		.uleb128 0xe
+ 567 018c 66010000 		.4byte	.LASF26
+ 568 0190 01       		.byte	0x1
+ 569 0191 2A       		.byte	0x2a
+ 570 0192 9C010000 		.4byte	0x19c
+ 571 0196 05       		.uleb128 0x5
+ 572 0197 03       		.byte	0x3
+ 573 0198 00000000 		.4byte	result
+ 574 019c 06       		.uleb128 0x6
+ 575 019d 7B010000 		.4byte	0x17b
+ 576 01a1 0E       		.uleb128 0xe
+ 577 01a2 33000000 		.4byte	.LASF27
+ 578 01a6 01       		.byte	0x1
+ 579 01a7 2B       		.byte	0x2b
+ 580 01a8 B8000000 		.4byte	0xb8
+ 581 01ac 05       		.uleb128 0x5
+ 582 01ad 03       		.byte	0x3
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 15
+
+
+ 583 01ae 00000000 		.4byte	timer_delay
+ 584 01b2 00       		.byte	0
+ 585              		.section	.debug_abbrev,"",%progbits
+ 586              	.Ldebug_abbrev0:
+ 587 0000 01       		.uleb128 0x1
+ 588 0001 11       		.uleb128 0x11
+ 589 0002 01       		.byte	0x1
+ 590 0003 25       		.uleb128 0x25
+ 591 0004 0E       		.uleb128 0xe
+ 592 0005 13       		.uleb128 0x13
+ 593 0006 0B       		.uleb128 0xb
+ 594 0007 03       		.uleb128 0x3
+ 595 0008 0E       		.uleb128 0xe
+ 596 0009 1B       		.uleb128 0x1b
+ 597 000a 0E       		.uleb128 0xe
+ 598 000b 55       		.uleb128 0x55
+ 599 000c 17       		.uleb128 0x17
+ 600 000d 11       		.uleb128 0x11
+ 601 000e 01       		.uleb128 0x1
+ 602 000f 10       		.uleb128 0x10
+ 603 0010 17       		.uleb128 0x17
+ 604 0011 00       		.byte	0
+ 605 0012 00       		.byte	0
+ 606 0013 02       		.uleb128 0x2
+ 607 0014 24       		.uleb128 0x24
+ 608 0015 00       		.byte	0
+ 609 0016 0B       		.uleb128 0xb
+ 610 0017 0B       		.uleb128 0xb
+ 611 0018 3E       		.uleb128 0x3e
+ 612 0019 0B       		.uleb128 0xb
+ 613 001a 03       		.uleb128 0x3
+ 614 001b 0E       		.uleb128 0xe
+ 615 001c 00       		.byte	0
+ 616 001d 00       		.byte	0
+ 617 001e 03       		.uleb128 0x3
+ 618 001f 24       		.uleb128 0x24
+ 619 0020 00       		.byte	0
+ 620 0021 0B       		.uleb128 0xb
+ 621 0022 0B       		.uleb128 0xb
+ 622 0023 3E       		.uleb128 0x3e
+ 623 0024 0B       		.uleb128 0xb
+ 624 0025 03       		.uleb128 0x3
+ 625 0026 08       		.uleb128 0x8
+ 626 0027 00       		.byte	0
+ 627 0028 00       		.byte	0
+ 628 0029 04       		.uleb128 0x4
+ 629 002a 16       		.uleb128 0x16
+ 630 002b 00       		.byte	0
+ 631 002c 03       		.uleb128 0x3
+ 632 002d 0E       		.uleb128 0xe
+ 633 002e 3A       		.uleb128 0x3a
+ 634 002f 0B       		.uleb128 0xb
+ 635 0030 3B       		.uleb128 0x3b
+ 636 0031 0B       		.uleb128 0xb
+ 637 0032 49       		.uleb128 0x49
+ 638 0033 13       		.uleb128 0x13
+ 639 0034 00       		.byte	0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 16
+
+
+ 640 0035 00       		.byte	0
+ 641 0036 05       		.uleb128 0x5
+ 642 0037 16       		.uleb128 0x16
+ 643 0038 00       		.byte	0
+ 644 0039 03       		.uleb128 0x3
+ 645 003a 0E       		.uleb128 0xe
+ 646 003b 3A       		.uleb128 0x3a
+ 647 003c 0B       		.uleb128 0xb
+ 648 003d 3B       		.uleb128 0x3b
+ 649 003e 05       		.uleb128 0x5
+ 650 003f 49       		.uleb128 0x49
+ 651 0040 13       		.uleb128 0x13
+ 652 0041 00       		.byte	0
+ 653 0042 00       		.byte	0
+ 654 0043 06       		.uleb128 0x6
+ 655 0044 35       		.uleb128 0x35
+ 656 0045 00       		.byte	0
+ 657 0046 49       		.uleb128 0x49
+ 658 0047 13       		.uleb128 0x13
+ 659 0048 00       		.byte	0
+ 660 0049 00       		.byte	0
+ 661 004a 07       		.uleb128 0x7
+ 662 004b 2E       		.uleb128 0x2e
+ 663 004c 00       		.byte	0
+ 664 004d 3F       		.uleb128 0x3f
+ 665 004e 19       		.uleb128 0x19
+ 666 004f 03       		.uleb128 0x3
+ 667 0050 0E       		.uleb128 0xe
+ 668 0051 3A       		.uleb128 0x3a
+ 669 0052 0B       		.uleb128 0xb
+ 670 0053 3B       		.uleb128 0x3b
+ 671 0054 0B       		.uleb128 0xb
+ 672 0055 27       		.uleb128 0x27
+ 673 0056 19       		.uleb128 0x19
+ 674 0057 11       		.uleb128 0x11
+ 675 0058 01       		.uleb128 0x1
+ 676 0059 12       		.uleb128 0x12
+ 677 005a 06       		.uleb128 0x6
+ 678 005b 40       		.uleb128 0x40
+ 679 005c 18       		.uleb128 0x18
+ 680 005d 9642     		.uleb128 0x2116
+ 681 005f 19       		.uleb128 0x19
+ 682 0060 00       		.byte	0
+ 683 0061 00       		.byte	0
+ 684 0062 08       		.uleb128 0x8
+ 685 0063 2E       		.uleb128 0x2e
+ 686 0064 01       		.byte	0x1
+ 687 0065 3F       		.uleb128 0x3f
+ 688 0066 19       		.uleb128 0x19
+ 689 0067 03       		.uleb128 0x3
+ 690 0068 0E       		.uleb128 0xe
+ 691 0069 3A       		.uleb128 0x3a
+ 692 006a 0B       		.uleb128 0xb
+ 693 006b 3B       		.uleb128 0x3b
+ 694 006c 0B       		.uleb128 0xb
+ 695 006d 27       		.uleb128 0x27
+ 696 006e 19       		.uleb128 0x19
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 17
+
+
+ 697 006f 11       		.uleb128 0x11
+ 698 0070 01       		.uleb128 0x1
+ 699 0071 12       		.uleb128 0x12
+ 700 0072 06       		.uleb128 0x6
+ 701 0073 40       		.uleb128 0x40
+ 702 0074 18       		.uleb128 0x18
+ 703 0075 9642     		.uleb128 0x2116
+ 704 0077 19       		.uleb128 0x19
+ 705 0078 01       		.uleb128 0x1
+ 706 0079 13       		.uleb128 0x13
+ 707 007a 00       		.byte	0
+ 708 007b 00       		.byte	0
+ 709 007c 09       		.uleb128 0x9
+ 710 007d 34       		.uleb128 0x34
+ 711 007e 00       		.byte	0
+ 712 007f 03       		.uleb128 0x3
+ 713 0080 0E       		.uleb128 0xe
+ 714 0081 3A       		.uleb128 0x3a
+ 715 0082 0B       		.uleb128 0xb
+ 716 0083 3B       		.uleb128 0x3b
+ 717 0084 0B       		.uleb128 0xb
+ 718 0085 49       		.uleb128 0x49
+ 719 0086 13       		.uleb128 0x13
+ 720 0087 02       		.uleb128 0x2
+ 721 0088 18       		.uleb128 0x18
+ 722 0089 00       		.byte	0
+ 723 008a 00       		.byte	0
+ 724 008b 0A       		.uleb128 0xa
+ 725 008c 2E       		.uleb128 0x2e
+ 726 008d 01       		.byte	0x1
+ 727 008e 3F       		.uleb128 0x3f
+ 728 008f 19       		.uleb128 0x19
+ 729 0090 03       		.uleb128 0x3
+ 730 0091 0E       		.uleb128 0xe
+ 731 0092 3A       		.uleb128 0x3a
+ 732 0093 0B       		.uleb128 0xb
+ 733 0094 3B       		.uleb128 0x3b
+ 734 0095 0B       		.uleb128 0xb
+ 735 0096 49       		.uleb128 0x49
+ 736 0097 13       		.uleb128 0x13
+ 737 0098 11       		.uleb128 0x11
+ 738 0099 01       		.uleb128 0x1
+ 739 009a 12       		.uleb128 0x12
+ 740 009b 06       		.uleb128 0x6
+ 741 009c 40       		.uleb128 0x40
+ 742 009d 18       		.uleb128 0x18
+ 743 009e 9642     		.uleb128 0x2116
+ 744 00a0 19       		.uleb128 0x19
+ 745 00a1 01       		.uleb128 0x1
+ 746 00a2 13       		.uleb128 0x13
+ 747 00a3 00       		.byte	0
+ 748 00a4 00       		.byte	0
+ 749 00a5 0B       		.uleb128 0xb
+ 750 00a6 34       		.uleb128 0x34
+ 751 00a7 00       		.byte	0
+ 752 00a8 03       		.uleb128 0x3
+ 753 00a9 08       		.uleb128 0x8
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 18
+
+
+ 754 00aa 3A       		.uleb128 0x3a
+ 755 00ab 0B       		.uleb128 0xb
+ 756 00ac 3B       		.uleb128 0x3b
+ 757 00ad 0B       		.uleb128 0xb
+ 758 00ae 49       		.uleb128 0x49
+ 759 00af 13       		.uleb128 0x13
+ 760 00b0 02       		.uleb128 0x2
+ 761 00b1 18       		.uleb128 0x18
+ 762 00b2 00       		.byte	0
+ 763 00b3 00       		.byte	0
+ 764 00b4 0C       		.uleb128 0xc
+ 765 00b5 01       		.uleb128 0x1
+ 766 00b6 01       		.byte	0x1
+ 767 00b7 49       		.uleb128 0x49
+ 768 00b8 13       		.uleb128 0x13
+ 769 00b9 01       		.uleb128 0x1
+ 770 00ba 13       		.uleb128 0x13
+ 771 00bb 00       		.byte	0
+ 772 00bc 00       		.byte	0
+ 773 00bd 0D       		.uleb128 0xd
+ 774 00be 21       		.uleb128 0x21
+ 775 00bf 00       		.byte	0
+ 776 00c0 49       		.uleb128 0x49
+ 777 00c1 13       		.uleb128 0x13
+ 778 00c2 2F       		.uleb128 0x2f
+ 779 00c3 0B       		.uleb128 0xb
+ 780 00c4 00       		.byte	0
+ 781 00c5 00       		.byte	0
+ 782 00c6 0E       		.uleb128 0xe
+ 783 00c7 34       		.uleb128 0x34
+ 784 00c8 00       		.byte	0
+ 785 00c9 03       		.uleb128 0x3
+ 786 00ca 0E       		.uleb128 0xe
+ 787 00cb 3A       		.uleb128 0x3a
+ 788 00cc 0B       		.uleb128 0xb
+ 789 00cd 3B       		.uleb128 0x3b
+ 790 00ce 0B       		.uleb128 0xb
+ 791 00cf 49       		.uleb128 0x49
+ 792 00d0 13       		.uleb128 0x13
+ 793 00d1 3F       		.uleb128 0x3f
+ 794 00d2 19       		.uleb128 0x19
+ 795 00d3 02       		.uleb128 0x2
+ 796 00d4 18       		.uleb128 0x18
+ 797 00d5 00       		.byte	0
+ 798 00d6 00       		.byte	0
+ 799 00d7 00       		.byte	0
+ 800              		.section	.debug_aranges,"",%progbits
+ 801 0000 2C000000 		.4byte	0x2c
+ 802 0004 0200     		.2byte	0x2
+ 803 0006 00000000 		.4byte	.Ldebug_info0
+ 804 000a 04       		.byte	0x4
+ 805 000b 00       		.byte	0
+ 806 000c 0000     		.2byte	0
+ 807 000e 0000     		.2byte	0
+ 808 0010 00000000 		.4byte	.LFB33
+ 809 0014 34000000 		.4byte	.LFE33-.LFB33
+ 810 0018 00000000 		.4byte	.LFB34
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 19
+
+
+ 811 001c 98000000 		.4byte	.LFE34-.LFB34
+ 812 0020 00000000 		.4byte	.LFB35
+ 813 0024 18010000 		.4byte	.LFE35-.LFB35
+ 814 0028 00000000 		.4byte	0
+ 815 002c 00000000 		.4byte	0
+ 816              		.section	.debug_ranges,"",%progbits
+ 817              	.Ldebug_ranges0:
+ 818 0000 00000000 		.4byte	.LFB33
+ 819 0004 34000000 		.4byte	.LFE33
+ 820 0008 00000000 		.4byte	.LFB34
+ 821 000c 98000000 		.4byte	.LFE34
+ 822 0010 00000000 		.4byte	.LFB35
+ 823 0014 18010000 		.4byte	.LFE35
+ 824 0018 00000000 		.4byte	0
+ 825 001c 00000000 		.4byte	0
+ 826              		.section	.debug_line,"",%progbits
+ 827              	.Ldebug_line0:
+ 828 0000 AA000000 		.section	.debug_str,"MS",%progbits,1
+ 828      02004300 
+ 828      00000201 
+ 828      FB0E0D00 
+ 828      01010101 
+ 829              	.LASF16:
+ 830 0000 72656733 		.ascii	"reg32\000"
+ 830      3200
+ 831              	.LASF13:
+ 832 0006 666C6F61 		.ascii	"float\000"
+ 832      7400
+ 833              	.LASF3:
+ 834 000c 73686F72 		.ascii	"short unsigned int\000"
+ 834      7420756E 
+ 834      7369676E 
+ 834      65642069 
+ 834      6E7400
+ 835              	.LASF20:
+ 836 001f 4144435F 		.ascii	"ADC_SAR_SEQ_ISR_LOC\000"
+ 836      5341525F 
+ 836      5345515F 
+ 836      4953525F 
+ 836      4C4F4300 
+ 837              	.LASF27:
+ 838 0033 74696D65 		.ascii	"timer_delay\000"
+ 838      725F6465 
+ 838      6C617900 
+ 839              	.LASF22:
+ 840 003f 74656D70 		.ascii	"temperature\000"
+ 840      65726174 
+ 840      75726500 
+ 841              	.LASF1:
+ 842 004b 756E7369 		.ascii	"unsigned char\000"
+ 842      676E6564 
+ 842      20636861 
+ 842      7200
+ 843              	.LASF11:
+ 844 0059 696E7431 		.ascii	"int16\000"
+ 844      3600
+ 845              	.LASF5:
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 20
+
+
+ 846 005f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 846      20756E73 
+ 846      69676E65 
+ 846      6420696E 
+ 846      7400
+ 847              	.LASF18:
+ 848 0071 696E7472 		.ascii	"intr_status\000"
+ 848      5F737461 
+ 848      74757300 
+ 849              	.LASF12:
+ 850 007d 696E7433 		.ascii	"int32\000"
+ 850      3200
+ 851              	.LASF14:
+ 852 0083 646F7562 		.ascii	"double\000"
+ 852      6C6500
+ 853              	.LASF29:
+ 854 008a 2E5C6D61 		.ascii	".\\main.c\000"
+ 854      696E2E63 
+ 854      00
+ 855              	.LASF28:
+ 856 0093 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 856      4320342E 
+ 856      392E3320 
+ 856      32303135 
+ 856      30333033 
+ 857 00c6 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 857      20726576 
+ 857      6973696F 
+ 857      6E203232 
+ 857      31323230 
+ 858 00f9 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 858      66756E63 
+ 858      74696F6E 
+ 858      2D736563 
+ 858      74696F6E 
+ 859              	.LASF9:
+ 860 0121 75696E74 		.ascii	"uint16\000"
+ 860      313600
+ 861              	.LASF31:
+ 862 0128 4953525F 		.ascii	"ISR_TIMER_LOC\000"
+ 862      54494D45 
+ 862      525F4C4F 
+ 862      4300
+ 863              	.LASF10:
+ 864 0136 75696E74 		.ascii	"uint32\000"
+ 864      333200
+ 865              	.LASF21:
+ 866 013d 6D61696E 		.ascii	"main\000"
+ 866      00
+ 867              	.LASF8:
+ 868 0142 756E7369 		.ascii	"unsigned int\000"
+ 868      676E6564 
+ 868      20696E74 
+ 868      00
+ 869              	.LASF7:
+ 870 014f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 870      206C6F6E 
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 21
+
+
+ 870      6720756E 
+ 870      7369676E 
+ 870      65642069 
+ 871              	.LASF26:
+ 872 0166 72657375 		.ascii	"result\000"
+ 872      6C7400
+ 873              	.LASF23:
+ 874 016d 75617274 		.ascii	"uartLine\000"
+ 874      4C696E65 
+ 874      00
+ 875              	.LASF17:
+ 876 0176 73697A65 		.ascii	"sizetype\000"
+ 876      74797065 
+ 876      00
+ 877              	.LASF6:
+ 878 017f 6C6F6E67 		.ascii	"long long int\000"
+ 878      206C6F6E 
+ 878      6720696E 
+ 878      7400
+ 879              	.LASF15:
+ 880 018d 63686172 		.ascii	"char\000"
+ 880      00
+ 881              	.LASF19:
+ 882 0192 72616E67 		.ascii	"range_status\000"
+ 882      655F7374 
+ 882      61747573 
+ 882      00
+ 883              	.LASF25:
+ 884 019f 64617461 		.ascii	"dataReady\000"
+ 884      52656164 
+ 884      7900
+ 885              	.LASF2:
+ 886 01a9 73686F72 		.ascii	"short int\000"
+ 886      7420696E 
+ 886      7400
+ 887              	.LASF4:
+ 888 01b3 6C6F6E67 		.ascii	"long int\000"
+ 888      20696E74 
+ 888      00
+ 889              	.LASF30:
+ 890 01bc 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\Repos\\PSOC4Pioneer\\DieT"
+ 890      635C486F 
+ 890      6D655C44 
+ 890      6F63756D 
+ 890      656E7473 
+ 891 01e8 656D7041 		.ascii	"empADC\\ADC_SAR_Seq_DieTemp_PSoC401.cydsn\000"
+ 891      44435C41 
+ 891      44435F53 
+ 891      41525F53 
+ 891      65715F44 
+ 892              	.LASF0:
+ 893 0211 7369676E 		.ascii	"signed char\000"
+ 893      65642063 
+ 893      68617200 
+ 894              	.LASF24:
+ 895 021d 41444343 		.ascii	"ADCCountsCorrected\000"
+ 895      6F756E74 
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccorKkMb.s 			page 22
+
+
+ 895      73436F72 
+ 895      72656374 
+ 895      656400
+ 896              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

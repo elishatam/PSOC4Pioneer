@@ -1,0 +1,254 @@
+C51 COMPILER V9.51   MAIN                                                                  01/05/2016 11:02:52 PAGE 1   
+
+
+C51 COMPILER V9.51, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\DP8051_Keil_951\Debug\main.obj
+COMPILER INVOKED BY: C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\import\keil\pk51\9.51\C51\BIN\c51.exe 
+                    -.\main.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP INCDIR(.,Generated_Source\PSoC3) FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/ma
+                    -in.lst) CD OT(2,SIZE) OJ(.\DP8051_Keil_951\Debug\main.obj)
+
+line level    source
+
+   1          /*******************************************************************************
+   2          * File: main.c
+   3          *
+   4          * Version : 1.3
+   5          *
+   6          * Description:
+   7          *   This is a source code for example project of DieTemp
+   8          *
+   9          ********************************************************************************
+  10          * Copyright 2012, Cypress Semiconductor Corporation. All rights reserved.
+  11          * This software is owned by Cypress Semiconductor Corporation and is protected
+  12          * by and subject to worldwide patent and copyright laws and treaties.
+  13          * Therefore, you may use this software only as provided in the license agreement
+  14          * accompanying the software package from which you obtained this software.
+  15          * CYPRESS AND ITS SUPPLIERS MAKE NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+  16          * WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT,
+  17          * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  18          *******************************************************************************/
+  19          
+  20          #include <device.h>
+  21          
+  22          /*******************************************************************************
+  23          * Function Name: main
+  24          ********************************************************************************
+  25          *
+  26          * Summary:
+  27          *  Main function performs following functions:
+  28          *   1: Initializes the LCD
+  29          *   2: Get the temperature of the Die
+  30          *   3: Print the Die Temperature value in LCD
+  31          *   4: Print the Status value in the LCD
+  32          *
+  33          * Parameters:
+  34          *  None.
+  35          *
+  36          * Return:
+  37          *  None.
+  38          *
+  39          *******************************************************************************/
+  40          int main()
+  41          {
+  42   1          cystatus Status;
+  43   1          int16 temperature;
+  44   1      
+  45   1          /* Initializing the LCD */
+  46   1          LCD_Char_1_Start();
+  47   1      
+  48   1          while(1)
+  49   1          {
+  50   2              /* Providing some delay */
+  51   2              CyDelay(50);
+  52   2      
+  53   2              /* Reading the Die Temperature value */
+C51 COMPILER V9.51   MAIN                                                                  01/05/2016 11:02:52 PAGE 2   
+
+  54   2              Status = DieTemp_1_GetTemp(&temperature);
+  55   2             
+  56   2      
+  57   2              /* Displaying the Die Temperature value on the LCD */
+  58   2              LCD_Char_1_Position(0u, 0u);
+  59   2              LCD_Char_1_PrintString("Temp = ");
+  60   2      
+  61   2              if (temperature >= 0)
+  62   2              {
+  63   3                  LCD_Char_1_PrintString("+");
+  64   3              }
+  65   2              else
+  66   2              {
+  67   3                  /* If the temperature value is negative, display "-" sign and make value positive */
+  68   3                  LCD_Char_1_PrintString("-");
+  69   3                  temperature = (uint16)(~temperature + 1u);
+  70   3              }
+  71   2              
+  72   2              LCD_Char_1_PrintNumber((uint16) (temperature));
+  73   2              LCD_Char_1_PrintString(" ");
+  74   2              
+  75   2              LCD_Char_1_PutChar(LCD_Char_1_CUSTOM_7);
+  76   2              LCD_Char_1_PrintString("C");
+  77   2      
+  78   2              /* Displaying the status value on the LCD */
+  79   2              LCD_Char_1_Position(1u, 0u);
+  80   2              LCD_Char_1_PrintString("Status = ");
+  81   2              LCD_Char_1_PrintInt8((uint8) Status);
+  82   2          }
+  83   1      }
+  84          
+  85          
+  86          /* [] END OF FILE */
+C51 COMPILER V9.51   MAIN                                                                  01/05/2016 11:02:52 PAGE 3   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION main (BEGIN)
+                                           ; SOURCE LINE # 40
+                                           ; SOURCE LINE # 41
+                                           ; SOURCE LINE # 46
+0000 120000      E     LCALL   LCD_Char_1_Start
+0003         ?C0001:
+                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 49
+                                           ; SOURCE LINE # 51
+0003 7F32              MOV     R7,#032H
+0005 7E00              MOV     R6,#00H
+0007 7D00              MOV     R5,#00H
+0009 7C00              MOV     R4,#00H
+000B 120000      E     LCALL   _?CyDelay
+                                           ; SOURCE LINE # 54
+000E 7B01              MOV     R3,#01H
+0010 7A00        R     MOV     R2,#HIGH temperature
+0012 7900        R     MOV     R1,#LOW temperature
+0014 120000      E     LCALL   _DieTemp_1_GetTemp
+0017 900000      R     MOV     DPTR,#Status
+001A EF                MOV     A,R7
+001B F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 58
+001C 7D00              MOV     R5,#00H
+001E 7F00              MOV     R7,#00H
+0020 120000      E     LCALL   _LCD_Char_1_Position
+                                           ; SOURCE LINE # 59
+0023 7BFF              MOV     R3,#0FFH
+0025 7A00        R     MOV     R2,#HIGH ?SC_0
+0027 7900        R     MOV     R1,#LOW ?SC_0
+0029 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 61
+002C 900000      R     MOV     DPTR,#temperature
+002F E0                MOVX    A,@DPTR
+0030 FE                MOV     R6,A
+0031 A3                INC     DPTR
+0032 E0                MOVX    A,@DPTR
+0033 FF                MOV     R7,A
+0034 C3                CLR     C
+0035 EE                MOV     A,R6
+0036 6480              XRL     A,#080H
+0038 9480              SUBB    A,#080H
+003A 400B              JC      ?C0003
+                                           ; SOURCE LINE # 62
+                                           ; SOURCE LINE # 63
+003C 7BFF              MOV     R3,#0FFH
+003E 7A00        R     MOV     R2,#HIGH ?SC_8
+0040 7900        R     MOV     R1,#LOW ?SC_8
+0042 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 64
+0045 8027              SJMP    ?C0004
+0047         ?C0003:
+                                           ; SOURCE LINE # 66
+                                           ; SOURCE LINE # 68
+0047 7BFF              MOV     R3,#0FFH
+0049 7A00        R     MOV     R2,#HIGH ?SC_10
+004B 7900        R     MOV     R1,#LOW ?SC_10
+004D 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 69
+C51 COMPILER V9.51   MAIN                                                                  01/05/2016 11:02:52 PAGE 4   
+
+0050 900000      R     MOV     DPTR,#temperature
+0053 E0                MOVX    A,@DPTR
+0054 FE                MOV     R6,A
+0055 A3                INC     DPTR
+0056 E0                MOVX    A,@DPTR
+0057 FF                MOV     R7,A
+0058 EF                MOV     A,R7
+0059 F4                CPL     A
+005A FF                MOV     R7,A
+005B EE                MOV     A,R6
+005C F4                CPL     A
+005D FE                MOV     R6,A
+005E EF                MOV     A,R7
+005F 2401              ADD     A,#01H
+0061 FF                MOV     R7,A
+0062 EE                MOV     A,R6
+0063 3400              ADDC    A,#00H
+0065 FE                MOV     R6,A
+0066 900000      R     MOV     DPTR,#temperature
+0069 EE                MOV     A,R6
+006A F0                MOVX    @DPTR,A
+006B A3                INC     DPTR
+006C EF                MOV     A,R7
+006D F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 70
+006E         ?C0004:
+                                           ; SOURCE LINE # 72
+006E 900000      R     MOV     DPTR,#temperature
+0071 E0                MOVX    A,@DPTR
+0072 FE                MOV     R6,A
+0073 A3                INC     DPTR
+0074 E0                MOVX    A,@DPTR
+0075 FF                MOV     R7,A
+0076 E4                CLR     A
+0077 FC                MOV     R4,A
+0078 FD                MOV     R5,A
+0079 120000      E     LCALL   _LCD_Char_1_PrintU32Number
+                                           ; SOURCE LINE # 73
+007C 7BFF              MOV     R3,#0FFH
+007E 7A00        R     MOV     R2,#HIGH ?SC_12
+0080 7900        R     MOV     R1,#LOW ?SC_12
+0082 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 75
+0085 7F07              MOV     R7,#07H
+0087 120000      E     LCALL   _LCD_Char_1_PutChar
+                                           ; SOURCE LINE # 76
+008A 7BFF              MOV     R3,#0FFH
+008C 7A00        R     MOV     R2,#HIGH ?SC_14
+008E 7900        R     MOV     R1,#LOW ?SC_14
+0090 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 79
+0093 7D00              MOV     R5,#00H
+0095 7F01              MOV     R7,#01H
+0097 120000      E     LCALL   _LCD_Char_1_Position
+                                           ; SOURCE LINE # 80
+009A 7BFF              MOV     R3,#0FFH
+009C 7A00        R     MOV     R2,#HIGH ?SC_16
+009E 7900        R     MOV     R1,#LOW ?SC_16
+00A0 120000      E     LCALL   _LCD_Char_1_PrintString
+                                           ; SOURCE LINE # 81
+00A3 900000      R     MOV     DPTR,#Status
+00A6 E0                MOVX    A,@DPTR
+C51 COMPILER V9.51   MAIN                                                                  01/05/2016 11:02:52 PAGE 5   
+
+00A7 FF                MOV     R7,A
+00A8 120000      E     LCALL   _LCD_Char_1_PrintInt8
+                                           ; SOURCE LINE # 82
+00AB 020000      R     LJMP    ?C0001
+00AE 22                RET     
+             ; FUNCTION main (END)
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    175    ----
+   CONSTANT SIZE    =     26    ----
+   XDATA SIZE       =   ----       3
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

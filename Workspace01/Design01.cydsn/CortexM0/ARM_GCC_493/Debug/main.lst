@@ -1,0 +1,1088 @@
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.ADC_SAR_SEQ_ISR_LOC,"ax",%progbits
+  18              		.align	2
+  19              		.global	ADC_SAR_SEQ_ISR_LOC
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	ADC_SAR_SEQ_ISR_LOC, %function
+  23              	ADC_SAR_SEQ_ISR_LOC:
+  24              	.LFB33:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <ADC_SAR_Seq.h>
+  14:.\main.c      **** 
+  15:.\main.c      **** #define CH0_N       (0x00u)
+  16:.\main.c      **** #define TEMP_CH     (0x01u)
+  17:.\main.c      **** #define DELAY_1SEC  (1000u)
+  18:.\main.c      **** 
+  19:.\main.c      **** /* Get actual Vref. value from ADC SAR sequencer */
+  20:.\main.c      **** #define ADC_VREF_VALUE_V ((float)ADC_SAR_Seq_DEFAULT_VREF_MV_VALUE/1000.0)
+  21:.\main.c      **** 
+  22:.\main.c      **** 
+  23:.\main.c      **** volatile uint32 dataReady = 0u;
+  24:.\main.c      **** volatile int16 result[ADC_SAR_Seq_TOTAL_CHANNELS_NUM];
+  25:.\main.c      **** volatile uint32 timer_delay = 0u;
+  26:.\main.c      **** 
+  27:.\main.c      **** /******************************************************************************
+  28:.\main.c      **** * Function Name: ADC_SAR_SEQ_ISR_LOC
+  29:.\main.c      **** *******************************************************************************
+  30:.\main.c      **** *
+  31:.\main.c      **** * Summary:
+  32:.\main.c      **** *  Handle Interrupt Service Routine. Source - ADC SAR Seq.
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 2
+
+
+  33:.\main.c      **** *
+  34:.\main.c      **** ******************************************************************************/
+  35:.\main.c      **** CY_ISR(ADC_SAR_SEQ_ISR_LOC)
+  36:.\main.c      **** {
+  26              		.loc 1 36 0
+  27              		.cfi_startproc
+  28 0000 10B5     		push	{r4, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 4, -8
+  31              		.cfi_offset 14, -4
+  37:.\main.c      ****     uint32 intr_status;
+  38:.\main.c      ****     int32 temperature;
+  39:.\main.c      ****     
+  40:.\main.c      ****     //Read Interrupt Status registers
+  41:.\main.c      ****     intr_status = ADC_SAR_Seq_SAR_INTR_MASKED_REG;
+  32              		.loc 1 41 0
+  33 0002 084B     		ldr	r3, .L3
+  34 0004 1C68     		ldr	r4, [r3]
+  35              	.LVL0:
+  42:.\main.c      ****     //Check for Injection End of Conversion
+  43:.\main.c      ****     if((intr_status & ADC_SAR_Seq_INJ_EOC_MASK) != 0u)
+  36              		.loc 1 43 0
+  37 0006 E306     		lsl	r3, r4, #27
+  38 0008 09D5     		bpl	.L2
+  44:.\main.c      ****     {
+  45:.\main.c      ****         result[TEMP_CH] = ADC_SAR_Seq_GetResult16(TEMP_CH);
+  39              		.loc 1 45 0
+  40 000a 0120     		mov	r0, #1
+  41 000c FFF7FEFF 		bl	ADC_SAR_Seq_GetResult16
+  42              	.LVL1:
+  43 0010 054B     		ldr	r3, .L3+4
+  44 0012 5880     		strh	r0, [r3, #2]
+  46:.\main.c      ****         dataReady |= ADC_SAR_Seq_INJ_EOC_MASK;
+  45              		.loc 1 46 0
+  46 0014 054A     		ldr	r2, .L3+8
+  47 0016 1168     		ldr	r1, [r2]
+  48 0018 1023     		mov	r3, #16
+  49 001a 0B43     		orr	r3, r1
+  50 001c 1360     		str	r3, [r2]
+  51              	.L2:
+  47:.\main.c      ****     }
+  48:.\main.c      ****     //Clear handled interrupt
+  49:.\main.c      ****     ADC_SAR_Seq_SAR_INTR_REG = intr_status;
+  52              		.loc 1 49 0
+  53 001e 044B     		ldr	r3, .L3+12
+  54 0020 1C60     		str	r4, [r3]
+  50:.\main.c      **** }
+  55              		.loc 1 50 0
+  56              		@ sp needed
+  57              	.LVL2:
+  58 0022 10BD     		pop	{r4, pc}
+  59              	.L4:
+  60              		.align	2
+  61              	.L3:
+  62 0024 1C021A40 		.word	1075446300
+  63 0028 00000000 		.word	result
+  64 002c 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 3
+
+
+  65 0030 10021A40 		.word	1075446288
+  66              		.cfi_endproc
+  67              	.LFE33:
+  68              		.size	ADC_SAR_SEQ_ISR_LOC, .-ADC_SAR_SEQ_ISR_LOC
+  69              		.section	.text.main,"ax",%progbits
+  70              		.align	2
+  71              		.global	main
+  72              		.code	16
+  73              		.thumb_func
+  74              		.type	main, %function
+  75              	main:
+  76              	.LFB34:
+  51:.\main.c      **** 
+  52:.\main.c      **** 
+  53:.\main.c      **** int main()
+  54:.\main.c      **** {
+  77              		.loc 1 54 0
+  78              		.cfi_startproc
+  79 0000 08B5     		push	{r3, lr}
+  80              		.cfi_def_cfa_offset 8
+  81              		.cfi_offset 3, -8
+  82              		.cfi_offset 14, -4
+  55:.\main.c      ****     int16 ADCCountsCorrected;
+  56:.\main.c      ****     int32 temperature;
+  57:.\main.c      ****     
+  58:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  59:.\main.c      ****     //Init and start sequencing SAR ADC
+  60:.\main.c      ****     ADC_SAR_Seq_Start();
+  83              		.loc 1 60 0
+  84 0002 FFF7FEFF 		bl	ADC_SAR_Seq_Start
+  85              	.LVL3:
+  61:.\main.c      ****     ADC_SAR_Seq_StartConvert();
+  86              		.loc 1 61 0
+  87 0006 FFF7FEFF 		bl	ADC_SAR_Seq_StartConvert
+  88              	.LVL4:
+  62:.\main.c      ****     //Enable interrupt and set interrupt handler to local routine
+  63:.\main.c      ****     ADC_SAR_Seq_IRQ_StartEx(ADC_SAR_SEQ_ISR_LOC);
+  89              		.loc 1 63 0
+  90 000a 0A48     		ldr	r0, .L8
+  91 000c FFF7FEFF 		bl	ADC_SAR_Seq_IRQ_StartEx
+  92              	.LVL5:
+  64:.\main.c      ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  93              		.loc 1 64 0
+  94              	@ 64 ".\main.c" 1
+  95 0010 62B6     		CPSIE   i
+  96              	@ 0 "" 2
+  97              		.code	16
+  98              	.L6:
+  65:.\main.c      ****     
+  66:.\main.c      ****     for(;;)
+  67:.\main.c      ****     {
+  68:.\main.c      ****         /* Place your application code here. */
+  69:.\main.c      ****         //For every 1 second, enable injection channel for next scan
+  70:.\main.c      ****         ADC_SAR_Seq_EnableInjection();
+  99              		.loc 1 70 0
+ 100 0012 FFF7FEFF 		bl	ADC_SAR_Seq_EnableInjection
+ 101              	.LVL6:
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 4
+
+
+  71:.\main.c      ****         
+  72:.\main.c      ****         //When conversion of the injection channel has completed
+  73:.\main.c      ****         if((dataReady & ADC_SAR_Seq_INJ_EOC_MASK) != 0u)
+ 102              		.loc 1 73 0
+ 103 0016 084B     		ldr	r3, .L8+4
+ 104 0018 1B68     		ldr	r3, [r3]
+ 105 001a DB06     		lsl	r3, r3, #27
+ 106 001c F9D5     		bpl	.L6
+  74:.\main.c      ****         {
+  75:.\main.c      ****             dataReady &= ~ADC_SAR_Seq_INJ_EOC_MASK;
+ 107              		.loc 1 75 0
+ 108 001e 064A     		ldr	r2, .L8+4
+ 109 0020 1368     		ldr	r3, [r2]
+ 110 0022 1021     		mov	r1, #16
+ 111 0024 8B43     		bic	r3, r1
+ 112 0026 1360     		str	r3, [r2]
+  76:.\main.c      ****             //Adjust data from ADC with resepct to Vref value.
+  77:.\main.c      ****             //Do this adjustment if Vref is set to any other than internal 1.024V
+  78:.\main.c      ****             ADCCountsCorrected = result[TEMP_CH]*((int16)((float)ADC_VREF_VALUE_V/1.024));
+ 113              		.loc 1 78 0
+ 114 0028 044B     		ldr	r3, .L8+8
+ 115 002a 5888     		ldrh	r0, [r3, #2]
+ 116              	.LVL7:
+  79:.\main.c      ****             
+  80:.\main.c      ****             temperature = DieTemp_CountsTo_Celsius(ADCCountsCorrected);
+ 117              		.loc 1 80 0
+ 118 002c 00B2     		sxth	r0, r0
+ 119 002e FFF7FEFF 		bl	DieTemp_CountsTo_Celsius
+ 120              	.LVL8:
+ 121 0032 EEE7     		b	.L6
+ 122              	.L9:
+ 123              		.align	2
+ 124              	.L8:
+ 125 0034 00000000 		.word	ADC_SAR_SEQ_ISR_LOC
+ 126 0038 00000000 		.word	.LANCHOR0
+ 127 003c 00000000 		.word	result
+ 128              		.cfi_endproc
+ 129              	.LFE34:
+ 130              		.size	main, .-main
+ 131              		.global	timer_delay
+ 132              		.comm	result,4,4
+ 133              		.global	dataReady
+ 134              		.bss
+ 135              		.align	2
+ 136              		.set	.LANCHOR0,. + 0
+ 137              		.type	dataReady, %object
+ 138              		.size	dataReady, 4
+ 139              	dataReady:
+ 140 0000 00000000 		.space	4
+ 141              		.type	timer_delay, %object
+ 142              		.size	timer_delay, 4
+ 143              	timer_delay:
+ 144 0004 00000000 		.space	4
+ 145              		.text
+ 146              	.Letext0:
+ 147              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 148              		.file 3 "Generated_Source\\PSoC4/ADC_SAR_Seq.h"
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 5
+
+
+ 149              		.file 4 "Generated_Source\\PSoC4/ADC_SAR_Seq_IRQ.h"
+ 150              		.file 5 "Generated_Source\\PSoC4/DieTemp.h"
+ 151              		.section	.debug_info,"",%progbits
+ 152              	.Ldebug_info0:
+ 153 0000 0B020000 		.4byte	0x20b
+ 154 0004 0400     		.2byte	0x4
+ 155 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 156 000a 04       		.byte	0x4
+ 157 000b 01       		.uleb128 0x1
+ 158 000c AA010000 		.4byte	.LASF31
+ 159 0010 01       		.byte	0x1
+ 160 0011 A9000000 		.4byte	.LASF32
+ 161 0015 B9000000 		.4byte	.LASF33
+ 162 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 163 001d 00000000 		.4byte	0
+ 164 0021 00000000 		.4byte	.Ldebug_line0
+ 165 0025 02       		.uleb128 0x2
+ 166 0026 01       		.byte	0x1
+ 167 0027 06       		.byte	0x6
+ 168 0028 55020000 		.4byte	.LASF0
+ 169 002c 02       		.uleb128 0x2
+ 170 002d 01       		.byte	0x1
+ 171 002e 08       		.byte	0x8
+ 172 002f 6A000000 		.4byte	.LASF1
+ 173 0033 02       		.uleb128 0x2
+ 174 0034 02       		.byte	0x2
+ 175 0035 05       		.byte	0x5
+ 176 0036 42020000 		.4byte	.LASF2
+ 177 003a 02       		.uleb128 0x2
+ 178 003b 02       		.byte	0x2
+ 179 003c 07       		.byte	0x7
+ 180 003d 27000000 		.4byte	.LASF3
+ 181 0041 02       		.uleb128 0x2
+ 182 0042 04       		.byte	0x4
+ 183 0043 05       		.byte	0x5
+ 184 0044 4C020000 		.4byte	.LASF4
+ 185 0048 02       		.uleb128 0x2
+ 186 0049 04       		.byte	0x4
+ 187 004a 07       		.byte	0x7
+ 188 004b 7E000000 		.4byte	.LASF5
+ 189 004f 02       		.uleb128 0x2
+ 190 0050 08       		.byte	0x8
+ 191 0051 05       		.byte	0x5
+ 192 0052 7E010000 		.4byte	.LASF6
+ 193 0056 02       		.uleb128 0x2
+ 194 0057 08       		.byte	0x8
+ 195 0058 07       		.byte	0x7
+ 196 0059 22010000 		.4byte	.LASF7
+ 197 005d 03       		.uleb128 0x3
+ 198 005e 04       		.byte	0x4
+ 199 005f 05       		.byte	0x5
+ 200 0060 696E7400 		.ascii	"int\000"
+ 201 0064 02       		.uleb128 0x2
+ 202 0065 04       		.byte	0x4
+ 203 0066 07       		.byte	0x7
+ 204 0067 15010000 		.4byte	.LASF8
+ 205 006b 04       		.uleb128 0x4
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 6
+
+
+ 206 006c B2000000 		.4byte	.LASF9
+ 207 0070 02       		.byte	0x2
+ 208 0071 C4       		.byte	0xc4
+ 209 0072 48000000 		.4byte	0x48
+ 210 0076 04       		.uleb128 0x4
+ 211 0077 78000000 		.4byte	.LASF10
+ 212 007b 02       		.byte	0x2
+ 213 007c C6       		.byte	0xc6
+ 214 007d 33000000 		.4byte	0x33
+ 215 0081 04       		.uleb128 0x4
+ 216 0082 9C000000 		.4byte	.LASF11
+ 217 0086 02       		.byte	0x2
+ 218 0087 C7       		.byte	0xc7
+ 219 0088 41000000 		.4byte	0x41
+ 220 008c 02       		.uleb128 0x2
+ 221 008d 04       		.byte	0x4
+ 222 008e 04       		.byte	0x4
+ 223 008f 21000000 		.4byte	.LASF12
+ 224 0093 02       		.uleb128 0x2
+ 225 0094 08       		.byte	0x8
+ 226 0095 04       		.byte	0x4
+ 227 0096 A2000000 		.4byte	.LASF13
+ 228 009a 02       		.uleb128 0x2
+ 229 009b 01       		.byte	0x1
+ 230 009c 08       		.byte	0x8
+ 231 009d 8C010000 		.4byte	.LASF14
+ 232 00a1 05       		.uleb128 0x5
+ 233 00a2 00000000 		.4byte	.LASF15
+ 234 00a6 02       		.byte	0x2
+ 235 00a7 6E01     		.2byte	0x16e
+ 236 00a9 AD000000 		.4byte	0xad
+ 237 00ad 06       		.uleb128 0x6
+ 238 00ae 6B000000 		.4byte	0x6b
+ 239 00b2 05       		.uleb128 0x5
+ 240 00b3 4B010000 		.4byte	.LASF16
+ 241 00b7 02       		.byte	0x2
+ 242 00b8 7E01     		.2byte	0x17e
+ 243 00ba BE000000 		.4byte	0xbe
+ 244 00be 07       		.uleb128 0x7
+ 245 00bf 04       		.byte	0x4
+ 246 00c0 C4000000 		.4byte	0xc4
+ 247 00c4 08       		.uleb128 0x8
+ 248 00c5 02       		.uleb128 0x2
+ 249 00c6 04       		.byte	0x4
+ 250 00c7 07       		.byte	0x7
+ 251 00c8 70010000 		.4byte	.LASF17
+ 252 00cc 09       		.uleb128 0x9
+ 253 00cd 06000000 		.4byte	.LASF18
+ 254 00d1 01       		.byte	0x1
+ 255 00d2 23       		.byte	0x23
+ 256 00d3 00000000 		.4byte	.LFB33
+ 257 00d7 34000000 		.4byte	.LFE33-.LFB33
+ 258 00db 01       		.uleb128 0x1
+ 259 00dc 9C       		.byte	0x9c
+ 260 00dd 0B010000 		.4byte	0x10b
+ 261 00e1 0A       		.uleb128 0xa
+ 262 00e2 90000000 		.4byte	.LASF20
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 7
+
+
+ 263 00e6 01       		.byte	0x1
+ 264 00e7 25       		.byte	0x25
+ 265 00e8 6B000000 		.4byte	0x6b
+ 266 00ec 00000000 		.4byte	.LLST0
+ 267 00f0 0B       		.uleb128 0xb
+ 268 00f1 46000000 		.4byte	.LASF22
+ 269 00f5 01       		.byte	0x1
+ 270 00f6 26       		.byte	0x26
+ 271 00f7 81000000 		.4byte	0x81
+ 272 00fb 0C       		.uleb128 0xc
+ 273 00fc 10000000 		.4byte	.LVL1
+ 274 0100 C2010000 		.4byte	0x1c2
+ 275 0104 0D       		.uleb128 0xd
+ 276 0105 01       		.uleb128 0x1
+ 277 0106 50       		.byte	0x50
+ 278 0107 01       		.uleb128 0x1
+ 279 0108 31       		.byte	0x31
+ 280 0109 00       		.byte	0
+ 281 010a 00       		.byte	0
+ 282 010b 0E       		.uleb128 0xe
+ 283 010c 79010000 		.4byte	.LASF19
+ 284 0110 01       		.byte	0x1
+ 285 0111 35       		.byte	0x35
+ 286 0112 5D000000 		.4byte	0x5d
+ 287 0116 00000000 		.4byte	.LFB34
+ 288 011a 40000000 		.4byte	.LFE34-.LFB34
+ 289 011e 01       		.uleb128 0x1
+ 290 011f 9C       		.byte	0x9c
+ 291 0120 7A010000 		.4byte	0x17a
+ 292 0124 0A       		.uleb128 0xa
+ 293 0125 7D020000 		.4byte	.LASF21
+ 294 0129 01       		.byte	0x1
+ 295 012a 37       		.byte	0x37
+ 296 012b 76000000 		.4byte	0x76
+ 297 012f 1F000000 		.4byte	.LLST1
+ 298 0133 0B       		.uleb128 0xb
+ 299 0134 46000000 		.4byte	.LASF22
+ 300 0138 01       		.byte	0x1
+ 301 0139 38       		.byte	0x38
+ 302 013a 81000000 		.4byte	0x81
+ 303 013e 0F       		.uleb128 0xf
+ 304 013f 06000000 		.4byte	.LVL3
+ 305 0143 D7010000 		.4byte	0x1d7
+ 306 0147 0F       		.uleb128 0xf
+ 307 0148 0A000000 		.4byte	.LVL4
+ 308 014c DE010000 		.4byte	0x1de
+ 309 0150 10       		.uleb128 0x10
+ 310 0151 10000000 		.4byte	.LVL5
+ 311 0155 E5010000 		.4byte	0x1e5
+ 312 0159 67010000 		.4byte	0x167
+ 313 015d 0D       		.uleb128 0xd
+ 314 015e 01       		.uleb128 0x1
+ 315 015f 50       		.byte	0x50
+ 316 0160 05       		.uleb128 0x5
+ 317 0161 03       		.byte	0x3
+ 318 0162 00000000 		.4byte	ADC_SAR_SEQ_ISR_LOC
+ 319 0166 00       		.byte	0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 8
+
+
+ 320 0167 0F       		.uleb128 0xf
+ 321 0168 16000000 		.4byte	.LVL6
+ 322 016c F6010000 		.4byte	0x1f6
+ 323 0170 0F       		.uleb128 0xf
+ 324 0171 32000000 		.4byte	.LVL8
+ 325 0175 FD010000 		.4byte	0x1fd
+ 326 0179 00       		.byte	0
+ 327 017a 11       		.uleb128 0x11
+ 328 017b 38020000 		.4byte	.LASF23
+ 329 017f 01       		.byte	0x1
+ 330 0180 17       		.byte	0x17
+ 331 0181 AD000000 		.4byte	0xad
+ 332 0185 05       		.uleb128 0x5
+ 333 0186 03       		.byte	0x3
+ 334 0187 00000000 		.4byte	dataReady
+ 335 018b 12       		.uleb128 0x12
+ 336 018c 76000000 		.4byte	0x76
+ 337 0190 9B010000 		.4byte	0x19b
+ 338 0194 13       		.uleb128 0x13
+ 339 0195 C5000000 		.4byte	0xc5
+ 340 0199 01       		.byte	0x1
+ 341 019a 00       		.byte	0
+ 342 019b 11       		.uleb128 0x11
+ 343 019c 1A000000 		.4byte	.LASF24
+ 344 01a0 01       		.byte	0x1
+ 345 01a1 18       		.byte	0x18
+ 346 01a2 AC010000 		.4byte	0x1ac
+ 347 01a6 05       		.uleb128 0x5
+ 348 01a7 03       		.byte	0x3
+ 349 01a8 00000000 		.4byte	result
+ 350 01ac 06       		.uleb128 0x6
+ 351 01ad 8B010000 		.4byte	0x18b
+ 352 01b1 11       		.uleb128 0x11
+ 353 01b2 3A000000 		.4byte	.LASF25
+ 354 01b6 01       		.byte	0x1
+ 355 01b7 19       		.byte	0x19
+ 356 01b8 AD000000 		.4byte	0xad
+ 357 01bc 05       		.uleb128 0x5
+ 358 01bd 03       		.byte	0x3
+ 359 01be 00000000 		.4byte	timer_delay
+ 360 01c2 14       		.uleb128 0x14
+ 361 01c3 58010000 		.4byte	.LASF34
+ 362 01c7 03       		.byte	0x3
+ 363 01c8 9F       		.byte	0x9f
+ 364 01c9 76000000 		.4byte	0x76
+ 365 01cd D7010000 		.4byte	0x1d7
+ 366 01d1 15       		.uleb128 0x15
+ 367 01d2 6B000000 		.4byte	0x6b
+ 368 01d6 00       		.byte	0
+ 369 01d7 16       		.uleb128 0x16
+ 370 01d8 39010000 		.4byte	.LASF26
+ 371 01dc 03       		.byte	0x3
+ 372 01dd 98       		.byte	0x98
+ 373 01de 16       		.uleb128 0x16
+ 374 01df FC000000 		.4byte	.LASF27
+ 375 01e3 03       		.byte	0x3
+ 376 01e4 9C       		.byte	0x9c
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 9
+
+
+ 377 01e5 17       		.uleb128 0x17
+ 378 01e6 52000000 		.4byte	.LASF29
+ 379 01ea 04       		.byte	0x4
+ 380 01eb 18       		.byte	0x18
+ 381 01ec F6010000 		.4byte	0x1f6
+ 382 01f0 15       		.uleb128 0x15
+ 383 01f1 B2000000 		.4byte	0xb2
+ 384 01f5 00       		.byte	0
+ 385 01f6 16       		.uleb128 0x16
+ 386 01f7 61020000 		.4byte	.LASF28
+ 387 01fb 03       		.byte	0x3
+ 388 01fc A8       		.byte	0xa8
+ 389 01fd 18       		.uleb128 0x18
+ 390 01fe 91010000 		.4byte	.LASF30
+ 391 0202 05       		.byte	0x5
+ 392 0203 38       		.byte	0x38
+ 393 0204 81000000 		.4byte	0x81
+ 394 0208 15       		.uleb128 0x15
+ 395 0209 81000000 		.4byte	0x81
+ 396 020d 00       		.byte	0
+ 397 020e 00       		.byte	0
+ 398              		.section	.debug_abbrev,"",%progbits
+ 399              	.Ldebug_abbrev0:
+ 400 0000 01       		.uleb128 0x1
+ 401 0001 11       		.uleb128 0x11
+ 402 0002 01       		.byte	0x1
+ 403 0003 25       		.uleb128 0x25
+ 404 0004 0E       		.uleb128 0xe
+ 405 0005 13       		.uleb128 0x13
+ 406 0006 0B       		.uleb128 0xb
+ 407 0007 03       		.uleb128 0x3
+ 408 0008 0E       		.uleb128 0xe
+ 409 0009 1B       		.uleb128 0x1b
+ 410 000a 0E       		.uleb128 0xe
+ 411 000b 55       		.uleb128 0x55
+ 412 000c 17       		.uleb128 0x17
+ 413 000d 11       		.uleb128 0x11
+ 414 000e 01       		.uleb128 0x1
+ 415 000f 10       		.uleb128 0x10
+ 416 0010 17       		.uleb128 0x17
+ 417 0011 00       		.byte	0
+ 418 0012 00       		.byte	0
+ 419 0013 02       		.uleb128 0x2
+ 420 0014 24       		.uleb128 0x24
+ 421 0015 00       		.byte	0
+ 422 0016 0B       		.uleb128 0xb
+ 423 0017 0B       		.uleb128 0xb
+ 424 0018 3E       		.uleb128 0x3e
+ 425 0019 0B       		.uleb128 0xb
+ 426 001a 03       		.uleb128 0x3
+ 427 001b 0E       		.uleb128 0xe
+ 428 001c 00       		.byte	0
+ 429 001d 00       		.byte	0
+ 430 001e 03       		.uleb128 0x3
+ 431 001f 24       		.uleb128 0x24
+ 432 0020 00       		.byte	0
+ 433 0021 0B       		.uleb128 0xb
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 10
+
+
+ 434 0022 0B       		.uleb128 0xb
+ 435 0023 3E       		.uleb128 0x3e
+ 436 0024 0B       		.uleb128 0xb
+ 437 0025 03       		.uleb128 0x3
+ 438 0026 08       		.uleb128 0x8
+ 439 0027 00       		.byte	0
+ 440 0028 00       		.byte	0
+ 441 0029 04       		.uleb128 0x4
+ 442 002a 16       		.uleb128 0x16
+ 443 002b 00       		.byte	0
+ 444 002c 03       		.uleb128 0x3
+ 445 002d 0E       		.uleb128 0xe
+ 446 002e 3A       		.uleb128 0x3a
+ 447 002f 0B       		.uleb128 0xb
+ 448 0030 3B       		.uleb128 0x3b
+ 449 0031 0B       		.uleb128 0xb
+ 450 0032 49       		.uleb128 0x49
+ 451 0033 13       		.uleb128 0x13
+ 452 0034 00       		.byte	0
+ 453 0035 00       		.byte	0
+ 454 0036 05       		.uleb128 0x5
+ 455 0037 16       		.uleb128 0x16
+ 456 0038 00       		.byte	0
+ 457 0039 03       		.uleb128 0x3
+ 458 003a 0E       		.uleb128 0xe
+ 459 003b 3A       		.uleb128 0x3a
+ 460 003c 0B       		.uleb128 0xb
+ 461 003d 3B       		.uleb128 0x3b
+ 462 003e 05       		.uleb128 0x5
+ 463 003f 49       		.uleb128 0x49
+ 464 0040 13       		.uleb128 0x13
+ 465 0041 00       		.byte	0
+ 466 0042 00       		.byte	0
+ 467 0043 06       		.uleb128 0x6
+ 468 0044 35       		.uleb128 0x35
+ 469 0045 00       		.byte	0
+ 470 0046 49       		.uleb128 0x49
+ 471 0047 13       		.uleb128 0x13
+ 472 0048 00       		.byte	0
+ 473 0049 00       		.byte	0
+ 474 004a 07       		.uleb128 0x7
+ 475 004b 0F       		.uleb128 0xf
+ 476 004c 00       		.byte	0
+ 477 004d 0B       		.uleb128 0xb
+ 478 004e 0B       		.uleb128 0xb
+ 479 004f 49       		.uleb128 0x49
+ 480 0050 13       		.uleb128 0x13
+ 481 0051 00       		.byte	0
+ 482 0052 00       		.byte	0
+ 483 0053 08       		.uleb128 0x8
+ 484 0054 15       		.uleb128 0x15
+ 485 0055 00       		.byte	0
+ 486 0056 27       		.uleb128 0x27
+ 487 0057 19       		.uleb128 0x19
+ 488 0058 00       		.byte	0
+ 489 0059 00       		.byte	0
+ 490 005a 09       		.uleb128 0x9
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 11
+
+
+ 491 005b 2E       		.uleb128 0x2e
+ 492 005c 01       		.byte	0x1
+ 493 005d 3F       		.uleb128 0x3f
+ 494 005e 19       		.uleb128 0x19
+ 495 005f 03       		.uleb128 0x3
+ 496 0060 0E       		.uleb128 0xe
+ 497 0061 3A       		.uleb128 0x3a
+ 498 0062 0B       		.uleb128 0xb
+ 499 0063 3B       		.uleb128 0x3b
+ 500 0064 0B       		.uleb128 0xb
+ 501 0065 27       		.uleb128 0x27
+ 502 0066 19       		.uleb128 0x19
+ 503 0067 11       		.uleb128 0x11
+ 504 0068 01       		.uleb128 0x1
+ 505 0069 12       		.uleb128 0x12
+ 506 006a 06       		.uleb128 0x6
+ 507 006b 40       		.uleb128 0x40
+ 508 006c 18       		.uleb128 0x18
+ 509 006d 9742     		.uleb128 0x2117
+ 510 006f 19       		.uleb128 0x19
+ 511 0070 01       		.uleb128 0x1
+ 512 0071 13       		.uleb128 0x13
+ 513 0072 00       		.byte	0
+ 514 0073 00       		.byte	0
+ 515 0074 0A       		.uleb128 0xa
+ 516 0075 34       		.uleb128 0x34
+ 517 0076 00       		.byte	0
+ 518 0077 03       		.uleb128 0x3
+ 519 0078 0E       		.uleb128 0xe
+ 520 0079 3A       		.uleb128 0x3a
+ 521 007a 0B       		.uleb128 0xb
+ 522 007b 3B       		.uleb128 0x3b
+ 523 007c 0B       		.uleb128 0xb
+ 524 007d 49       		.uleb128 0x49
+ 525 007e 13       		.uleb128 0x13
+ 526 007f 02       		.uleb128 0x2
+ 527 0080 17       		.uleb128 0x17
+ 528 0081 00       		.byte	0
+ 529 0082 00       		.byte	0
+ 530 0083 0B       		.uleb128 0xb
+ 531 0084 34       		.uleb128 0x34
+ 532 0085 00       		.byte	0
+ 533 0086 03       		.uleb128 0x3
+ 534 0087 0E       		.uleb128 0xe
+ 535 0088 3A       		.uleb128 0x3a
+ 536 0089 0B       		.uleb128 0xb
+ 537 008a 3B       		.uleb128 0x3b
+ 538 008b 0B       		.uleb128 0xb
+ 539 008c 49       		.uleb128 0x49
+ 540 008d 13       		.uleb128 0x13
+ 541 008e 00       		.byte	0
+ 542 008f 00       		.byte	0
+ 543 0090 0C       		.uleb128 0xc
+ 544 0091 898201   		.uleb128 0x4109
+ 545 0094 01       		.byte	0x1
+ 546 0095 11       		.uleb128 0x11
+ 547 0096 01       		.uleb128 0x1
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 12
+
+
+ 548 0097 31       		.uleb128 0x31
+ 549 0098 13       		.uleb128 0x13
+ 550 0099 00       		.byte	0
+ 551 009a 00       		.byte	0
+ 552 009b 0D       		.uleb128 0xd
+ 553 009c 8A8201   		.uleb128 0x410a
+ 554 009f 00       		.byte	0
+ 555 00a0 02       		.uleb128 0x2
+ 556 00a1 18       		.uleb128 0x18
+ 557 00a2 9142     		.uleb128 0x2111
+ 558 00a4 18       		.uleb128 0x18
+ 559 00a5 00       		.byte	0
+ 560 00a6 00       		.byte	0
+ 561 00a7 0E       		.uleb128 0xe
+ 562 00a8 2E       		.uleb128 0x2e
+ 563 00a9 01       		.byte	0x1
+ 564 00aa 3F       		.uleb128 0x3f
+ 565 00ab 19       		.uleb128 0x19
+ 566 00ac 03       		.uleb128 0x3
+ 567 00ad 0E       		.uleb128 0xe
+ 568 00ae 3A       		.uleb128 0x3a
+ 569 00af 0B       		.uleb128 0xb
+ 570 00b0 3B       		.uleb128 0x3b
+ 571 00b1 0B       		.uleb128 0xb
+ 572 00b2 49       		.uleb128 0x49
+ 573 00b3 13       		.uleb128 0x13
+ 574 00b4 11       		.uleb128 0x11
+ 575 00b5 01       		.uleb128 0x1
+ 576 00b6 12       		.uleb128 0x12
+ 577 00b7 06       		.uleb128 0x6
+ 578 00b8 40       		.uleb128 0x40
+ 579 00b9 18       		.uleb128 0x18
+ 580 00ba 9742     		.uleb128 0x2117
+ 581 00bc 19       		.uleb128 0x19
+ 582 00bd 01       		.uleb128 0x1
+ 583 00be 13       		.uleb128 0x13
+ 584 00bf 00       		.byte	0
+ 585 00c0 00       		.byte	0
+ 586 00c1 0F       		.uleb128 0xf
+ 587 00c2 898201   		.uleb128 0x4109
+ 588 00c5 00       		.byte	0
+ 589 00c6 11       		.uleb128 0x11
+ 590 00c7 01       		.uleb128 0x1
+ 591 00c8 31       		.uleb128 0x31
+ 592 00c9 13       		.uleb128 0x13
+ 593 00ca 00       		.byte	0
+ 594 00cb 00       		.byte	0
+ 595 00cc 10       		.uleb128 0x10
+ 596 00cd 898201   		.uleb128 0x4109
+ 597 00d0 01       		.byte	0x1
+ 598 00d1 11       		.uleb128 0x11
+ 599 00d2 01       		.uleb128 0x1
+ 600 00d3 31       		.uleb128 0x31
+ 601 00d4 13       		.uleb128 0x13
+ 602 00d5 01       		.uleb128 0x1
+ 603 00d6 13       		.uleb128 0x13
+ 604 00d7 00       		.byte	0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 13
+
+
+ 605 00d8 00       		.byte	0
+ 606 00d9 11       		.uleb128 0x11
+ 607 00da 34       		.uleb128 0x34
+ 608 00db 00       		.byte	0
+ 609 00dc 03       		.uleb128 0x3
+ 610 00dd 0E       		.uleb128 0xe
+ 611 00de 3A       		.uleb128 0x3a
+ 612 00df 0B       		.uleb128 0xb
+ 613 00e0 3B       		.uleb128 0x3b
+ 614 00e1 0B       		.uleb128 0xb
+ 615 00e2 49       		.uleb128 0x49
+ 616 00e3 13       		.uleb128 0x13
+ 617 00e4 3F       		.uleb128 0x3f
+ 618 00e5 19       		.uleb128 0x19
+ 619 00e6 02       		.uleb128 0x2
+ 620 00e7 18       		.uleb128 0x18
+ 621 00e8 00       		.byte	0
+ 622 00e9 00       		.byte	0
+ 623 00ea 12       		.uleb128 0x12
+ 624 00eb 01       		.uleb128 0x1
+ 625 00ec 01       		.byte	0x1
+ 626 00ed 49       		.uleb128 0x49
+ 627 00ee 13       		.uleb128 0x13
+ 628 00ef 01       		.uleb128 0x1
+ 629 00f0 13       		.uleb128 0x13
+ 630 00f1 00       		.byte	0
+ 631 00f2 00       		.byte	0
+ 632 00f3 13       		.uleb128 0x13
+ 633 00f4 21       		.uleb128 0x21
+ 634 00f5 00       		.byte	0
+ 635 00f6 49       		.uleb128 0x49
+ 636 00f7 13       		.uleb128 0x13
+ 637 00f8 2F       		.uleb128 0x2f
+ 638 00f9 0B       		.uleb128 0xb
+ 639 00fa 00       		.byte	0
+ 640 00fb 00       		.byte	0
+ 641 00fc 14       		.uleb128 0x14
+ 642 00fd 2E       		.uleb128 0x2e
+ 643 00fe 01       		.byte	0x1
+ 644 00ff 3F       		.uleb128 0x3f
+ 645 0100 19       		.uleb128 0x19
+ 646 0101 03       		.uleb128 0x3
+ 647 0102 0E       		.uleb128 0xe
+ 648 0103 3A       		.uleb128 0x3a
+ 649 0104 0B       		.uleb128 0xb
+ 650 0105 3B       		.uleb128 0x3b
+ 651 0106 0B       		.uleb128 0xb
+ 652 0107 27       		.uleb128 0x27
+ 653 0108 19       		.uleb128 0x19
+ 654 0109 49       		.uleb128 0x49
+ 655 010a 13       		.uleb128 0x13
+ 656 010b 3C       		.uleb128 0x3c
+ 657 010c 19       		.uleb128 0x19
+ 658 010d 01       		.uleb128 0x1
+ 659 010e 13       		.uleb128 0x13
+ 660 010f 00       		.byte	0
+ 661 0110 00       		.byte	0
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 14
+
+
+ 662 0111 15       		.uleb128 0x15
+ 663 0112 05       		.uleb128 0x5
+ 664 0113 00       		.byte	0
+ 665 0114 49       		.uleb128 0x49
+ 666 0115 13       		.uleb128 0x13
+ 667 0116 00       		.byte	0
+ 668 0117 00       		.byte	0
+ 669 0118 16       		.uleb128 0x16
+ 670 0119 2E       		.uleb128 0x2e
+ 671 011a 00       		.byte	0
+ 672 011b 3F       		.uleb128 0x3f
+ 673 011c 19       		.uleb128 0x19
+ 674 011d 03       		.uleb128 0x3
+ 675 011e 0E       		.uleb128 0xe
+ 676 011f 3A       		.uleb128 0x3a
+ 677 0120 0B       		.uleb128 0xb
+ 678 0121 3B       		.uleb128 0x3b
+ 679 0122 0B       		.uleb128 0xb
+ 680 0123 27       		.uleb128 0x27
+ 681 0124 19       		.uleb128 0x19
+ 682 0125 3C       		.uleb128 0x3c
+ 683 0126 19       		.uleb128 0x19
+ 684 0127 00       		.byte	0
+ 685 0128 00       		.byte	0
+ 686 0129 17       		.uleb128 0x17
+ 687 012a 2E       		.uleb128 0x2e
+ 688 012b 01       		.byte	0x1
+ 689 012c 3F       		.uleb128 0x3f
+ 690 012d 19       		.uleb128 0x19
+ 691 012e 03       		.uleb128 0x3
+ 692 012f 0E       		.uleb128 0xe
+ 693 0130 3A       		.uleb128 0x3a
+ 694 0131 0B       		.uleb128 0xb
+ 695 0132 3B       		.uleb128 0x3b
+ 696 0133 0B       		.uleb128 0xb
+ 697 0134 27       		.uleb128 0x27
+ 698 0135 19       		.uleb128 0x19
+ 699 0136 3C       		.uleb128 0x3c
+ 700 0137 19       		.uleb128 0x19
+ 701 0138 01       		.uleb128 0x1
+ 702 0139 13       		.uleb128 0x13
+ 703 013a 00       		.byte	0
+ 704 013b 00       		.byte	0
+ 705 013c 18       		.uleb128 0x18
+ 706 013d 2E       		.uleb128 0x2e
+ 707 013e 01       		.byte	0x1
+ 708 013f 3F       		.uleb128 0x3f
+ 709 0140 19       		.uleb128 0x19
+ 710 0141 03       		.uleb128 0x3
+ 711 0142 0E       		.uleb128 0xe
+ 712 0143 3A       		.uleb128 0x3a
+ 713 0144 0B       		.uleb128 0xb
+ 714 0145 3B       		.uleb128 0x3b
+ 715 0146 0B       		.uleb128 0xb
+ 716 0147 27       		.uleb128 0x27
+ 717 0148 19       		.uleb128 0x19
+ 718 0149 49       		.uleb128 0x49
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 15
+
+
+ 719 014a 13       		.uleb128 0x13
+ 720 014b 3C       		.uleb128 0x3c
+ 721 014c 19       		.uleb128 0x19
+ 722 014d 00       		.byte	0
+ 723 014e 00       		.byte	0
+ 724 014f 00       		.byte	0
+ 725              		.section	.debug_loc,"",%progbits
+ 726              	.Ldebug_loc0:
+ 727              	.LLST0:
+ 728 0000 06000000 		.4byte	.LVL0
+ 729 0004 22000000 		.4byte	.LVL2
+ 730 0008 0100     		.2byte	0x1
+ 731 000a 54       		.byte	0x54
+ 732 000b 22000000 		.4byte	.LVL2
+ 733 000f 34000000 		.4byte	.LFE33
+ 734 0013 0200     		.2byte	0x2
+ 735 0015 73       		.byte	0x73
+ 736 0016 00       		.sleb128 0
+ 737 0017 00000000 		.4byte	0
+ 738 001b 00000000 		.4byte	0
+ 739              	.LLST1:
+ 740 001f 2C000000 		.4byte	.LVL7
+ 741 0023 31000000 		.4byte	.LVL8-1
+ 742 0027 0100     		.2byte	0x1
+ 743 0029 50       		.byte	0x50
+ 744 002a 00000000 		.4byte	0
+ 745 002e 00000000 		.4byte	0
+ 746              		.section	.debug_aranges,"",%progbits
+ 747 0000 24000000 		.4byte	0x24
+ 748 0004 0200     		.2byte	0x2
+ 749 0006 00000000 		.4byte	.Ldebug_info0
+ 750 000a 04       		.byte	0x4
+ 751 000b 00       		.byte	0
+ 752 000c 0000     		.2byte	0
+ 753 000e 0000     		.2byte	0
+ 754 0010 00000000 		.4byte	.LFB33
+ 755 0014 34000000 		.4byte	.LFE33-.LFB33
+ 756 0018 00000000 		.4byte	.LFB34
+ 757 001c 40000000 		.4byte	.LFE34-.LFB34
+ 758 0020 00000000 		.4byte	0
+ 759 0024 00000000 		.4byte	0
+ 760              		.section	.debug_ranges,"",%progbits
+ 761              	.Ldebug_ranges0:
+ 762 0000 00000000 		.4byte	.LFB33
+ 763 0004 34000000 		.4byte	.LFE33
+ 764 0008 00000000 		.4byte	.LFB34
+ 765 000c 40000000 		.4byte	.LFE34
+ 766 0010 00000000 		.4byte	0
+ 767 0014 00000000 		.4byte	0
+ 768              		.section	.debug_line,"",%progbits
+ 769              	.Ldebug_line0:
+ 770 0000 A9000000 		.section	.debug_str,"MS",%progbits,1
+ 770      02007600 
+ 770      00000201 
+ 770      FB0E0D00 
+ 770      01010101 
+ 771              	.LASF15:
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 16
+
+
+ 772 0000 72656733 		.ascii	"reg32\000"
+ 772      3200
+ 773              	.LASF18:
+ 774 0006 4144435F 		.ascii	"ADC_SAR_SEQ_ISR_LOC\000"
+ 774      5341525F 
+ 774      5345515F 
+ 774      4953525F 
+ 774      4C4F4300 
+ 775              	.LASF24:
+ 776 001a 72657375 		.ascii	"result\000"
+ 776      6C7400
+ 777              	.LASF12:
+ 778 0021 666C6F61 		.ascii	"float\000"
+ 778      7400
+ 779              	.LASF3:
+ 780 0027 73686F72 		.ascii	"short unsigned int\000"
+ 780      7420756E 
+ 780      7369676E 
+ 780      65642069 
+ 780      6E7400
+ 781              	.LASF25:
+ 782 003a 74696D65 		.ascii	"timer_delay\000"
+ 782      725F6465 
+ 782      6C617900 
+ 783              	.LASF22:
+ 784 0046 74656D70 		.ascii	"temperature\000"
+ 784      65726174 
+ 784      75726500 
+ 785              	.LASF29:
+ 786 0052 4144435F 		.ascii	"ADC_SAR_Seq_IRQ_StartEx\000"
+ 786      5341525F 
+ 786      5365715F 
+ 786      4952515F 
+ 786      53746172 
+ 787              	.LASF1:
+ 788 006a 756E7369 		.ascii	"unsigned char\000"
+ 788      676E6564 
+ 788      20636861 
+ 788      7200
+ 789              	.LASF10:
+ 790 0078 696E7431 		.ascii	"int16\000"
+ 790      3600
+ 791              	.LASF5:
+ 792 007e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 792      20756E73 
+ 792      69676E65 
+ 792      6420696E 
+ 792      7400
+ 793              	.LASF20:
+ 794 0090 696E7472 		.ascii	"intr_status\000"
+ 794      5F737461 
+ 794      74757300 
+ 795              	.LASF11:
+ 796 009c 696E7433 		.ascii	"int32\000"
+ 796      3200
+ 797              	.LASF13:
+ 798 00a2 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 17
+
+
+ 798      6C6500
+ 799              	.LASF32:
+ 800 00a9 2E5C6D61 		.ascii	".\\main.c\000"
+ 800      696E2E63 
+ 800      00
+ 801              	.LASF9:
+ 802 00b2 75696E74 		.ascii	"uint32\000"
+ 802      333200
+ 803              	.LASF33:
+ 804 00b9 5C5C4D61 		.ascii	"\\\\Mac\\Home\\Documents\\Repos\\PSOC4Pioneer\\Work"
+ 804      635C486F 
+ 804      6D655C44 
+ 804      6F63756D 
+ 804      656E7473 
+ 805 00e5 73706163 		.ascii	"space01\\Design01.cydsn\000"
+ 805      6530315C 
+ 805      44657369 
+ 805      676E3031 
+ 805      2E637964 
+ 806              	.LASF27:
+ 807 00fc 4144435F 		.ascii	"ADC_SAR_Seq_StartConvert\000"
+ 807      5341525F 
+ 807      5365715F 
+ 807      53746172 
+ 807      74436F6E 
+ 808              	.LASF8:
+ 809 0115 756E7369 		.ascii	"unsigned int\000"
+ 809      676E6564 
+ 809      20696E74 
+ 809      00
+ 810              	.LASF7:
+ 811 0122 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 811      206C6F6E 
+ 811      6720756E 
+ 811      7369676E 
+ 811      65642069 
+ 812              	.LASF26:
+ 813 0139 4144435F 		.ascii	"ADC_SAR_Seq_Start\000"
+ 813      5341525F 
+ 813      5365715F 
+ 813      53746172 
+ 813      7400
+ 814              	.LASF16:
+ 815 014b 63796973 		.ascii	"cyisraddress\000"
+ 815      72616464 
+ 815      72657373 
+ 815      00
+ 816              	.LASF34:
+ 817 0158 4144435F 		.ascii	"ADC_SAR_Seq_GetResult16\000"
+ 817      5341525F 
+ 817      5365715F 
+ 817      47657452 
+ 817      6573756C 
+ 818              	.LASF17:
+ 819 0170 73697A65 		.ascii	"sizetype\000"
+ 819      74797065 
+ 819      00
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 18
+
+
+ 820              	.LASF19:
+ 821 0179 6D61696E 		.ascii	"main\000"
+ 821      00
+ 822              	.LASF6:
+ 823 017e 6C6F6E67 		.ascii	"long long int\000"
+ 823      206C6F6E 
+ 823      6720696E 
+ 823      7400
+ 824              	.LASF14:
+ 825 018c 63686172 		.ascii	"char\000"
+ 825      00
+ 826              	.LASF30:
+ 827 0191 44696554 		.ascii	"DieTemp_CountsTo_Celsius\000"
+ 827      656D705F 
+ 827      436F756E 
+ 827      7473546F 
+ 827      5F43656C 
+ 828              	.LASF31:
+ 829 01aa 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 829      4320342E 
+ 829      392E3320 
+ 829      32303135 
+ 829      30333033 
+ 830 01dd 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 830      20726576 
+ 830      6973696F 
+ 830      6E203232 
+ 830      31323230 
+ 831 0210 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 831      66756E63 
+ 831      74696F6E 
+ 831      2D736563 
+ 831      74696F6E 
+ 832              	.LASF23:
+ 833 0238 64617461 		.ascii	"dataReady\000"
+ 833      52656164 
+ 833      7900
+ 834              	.LASF2:
+ 835 0242 73686F72 		.ascii	"short int\000"
+ 835      7420696E 
+ 835      7400
+ 836              	.LASF4:
+ 837 024c 6C6F6E67 		.ascii	"long int\000"
+ 837      20696E74 
+ 837      00
+ 838              	.LASF0:
+ 839 0255 7369676E 		.ascii	"signed char\000"
+ 839      65642063 
+ 839      68617200 
+ 840              	.LASF28:
+ 841 0261 4144435F 		.ascii	"ADC_SAR_Seq_EnableInjection\000"
+ 841      5341525F 
+ 841      5365715F 
+ 841      456E6162 
+ 841      6C65496E 
+ 842              	.LASF21:
+ 843 027d 41444343 		.ascii	"ADCCountsCorrected\000"
+ARM GAS  C:\Users\ELISHA~1\AppData\Local\Temp\ccaYHmjt.s 			page 19
+
+
+ 843      6F756E74 
+ 843      73436F72 
+ 843      72656374 
+ 843      656400
+ 844              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

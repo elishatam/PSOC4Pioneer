@@ -1,0 +1,22 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2016-01-05T22:34:35Z")
+ (DESIGN "Design01")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 3.3 CP1")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "Design01")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT ClockBlock.hfclk \\ADC_SAR_Seq\:IRQ\\.clock (0.000:0.000:0.000))
+    (INTERCONNECT ClockBlock.ff_div_7 \\ADC_SAR_Seq\:cy_psoc4_sar\\.clock (0.000:0.000:0.000))
+    (INTERCONNECT \\ADC_SAR_Seq\:cy_psoc4_sar\\.irq \\ADC_SAR_Seq\:IRQ\\.interrupt (1.000:1.000:1.000))
+    (INTERCONNECT __ONE__.q Pin_Vin\(0\).pin_input (5.498:5.498:5.498))
+   )
+  )
+ )
+)

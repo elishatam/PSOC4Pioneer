@@ -1,0 +1,5 @@
+\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\Design01.cyprj|35824671-41fc-4238-a53b-0847460be95c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|528f51f0-af59-46ef-8938-1a49d133ff6f
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|3f3863d1-4bc1-4d63-92ba-50c9805c1b3f
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|26f4ac07-0756-45c2-a0ff-a7ba411cf92f
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f8b8fb62-c839-4550-9315-fdd90ca3ff14

@@ -1,0 +1,13 @@
+# ADC_SAR_Seq_DieTemp_PSoC401
+# 2016-01-05 19:45:34Z
+
+# IO_2@[IOP=(3)][IoId=(2)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 2
+# IO_3@[IOP=(3)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 3 3
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "Pin_Vin(0)" iocell 0 4
+set_io "\UART:tx(0)\" iocell 0 5
+set_io "Pin_LED(0)" iocell 0 2
+set_location "\ADC_SAR_SEQ:cy_psoc4_sar\" p4sarcell -1 -1 0
+set_location "\DieTemp:cy_psoc4_temp\" p4tempcell -1 -1 0

@@ -1,0 +1,130 @@
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_SEQ.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_SEQ_INT.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_INT.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_INT.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/cyapicallbacks.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_SEQ_IRQ.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_IRQ.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_IRQ.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_IRQ.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_IRQ.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_SEQ_PM.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_PM.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_PM.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_SEQ_intClock.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_intClock.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_intClock.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_intClock.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ADC_SAR_SEQ_intClock.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/Clock.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Clock.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Clock.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Clock.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Clock.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/Cm0Start.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Cm0Start.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Cm0Start.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/CyFlash.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyFlash.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyFlash.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyFlash.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/CyLFClk.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/CyLib.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyFlash.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/DieTemp.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/DieTemp.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/DieTemp.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/DieTemp.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/DieTemp.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/ISR_TIMER.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ISR_TIMER.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ISR_TIMER.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ISR_TIMER.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/ISR_TIMER.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/PWM.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/PWM_PM.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM_PM.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/PWM_PM.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/Pin_LED.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED_aliases.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cypins.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_LED_aliases.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/Pin_Vin.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin_aliases.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cypins.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/Pin_Vin_aliases.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/UART.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART_PVT.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cypins.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/UART_PVT.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/cyPm.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyPm.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyPm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyPm.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/cyfitter_cfg.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter_cfg.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter_cfg.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/cymetadata.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cymetadata.c //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cymetadata.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/CortexM0/ARM_GCC_493/Debug/cyutils.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyutils.c 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempADC/ADC_SAR_Seq_DieTemp_PSoC401.cydsn/Generated_Source/PSoC4/cyutils.c : 
+

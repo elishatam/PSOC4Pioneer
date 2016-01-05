@@ -1,0 +1,92 @@
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_Seq.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_Seq_INT.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_INT.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_INT.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/cyapicallbacks.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_Seq_IRQ.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_IRQ.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_IRQ.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_IRQ.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_IRQ.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_Seq_PM.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_PM.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_PM.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/ADC_SAR_Seq_intClock.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_intClock.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_intClock.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_intClock.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/ADC_SAR_Seq_intClock.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/Cm0Start.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Cm0Start.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/cyapicallbacks.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Cm0Start.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/CyFlash.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyFlash.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyFlash.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyFlash.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/CyLFClk.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/CyLib.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyFlash.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/DieTemp.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/DieTemp.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/DieTemp.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/DieTemp.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/DieTemp.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/Pin_Vin.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin_aliases.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cypins.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/Pin_Vin_aliases.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/cyPm.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyPm.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyPm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyPm.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/cyfitter_cfg.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLFClk.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter_cfg.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/cymetadata.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cymetadata.c //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cymetadata.c : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/CortexM0/ARM_GCC_493/Debug/cyutils.o : //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyutils.c 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/Workspace01/Design01.cydsn/Generated_Source/PSoC4/cyutils.c : 
+

@@ -1,0 +1,42 @@
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/DP8051_Keil_951/Debug/main.obj : //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyDmac.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyFlash.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyLib.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CySpc.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/DieTemp_1.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1_LCDPort.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1_LCDPort_aliases.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/PSoC3_8051.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyPm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydevice.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydevice_trm.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydisabledsheets.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyfitter.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyfitter_cfg.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cypins.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cytypes.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/project.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/device.h //Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/main.c 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyDmac.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyFlash.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CyLib.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/CySpc.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/DieTemp_1.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1_LCDPort.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/LCD_Char_1_LCDPort_aliases.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/PSoC3_8051.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyPm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydevice.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydevice_trm.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cydisabledsheets.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyfitter.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cyfitter_cfg.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cypins.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/cytypes.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/Generated_Source/PSoC3/project.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/device.h : 
+
+//Mac/Home/Documents/Repos/PSOC4Pioneer/DieTempExample/DieTemp_BasicTest01.cydsn/main.c : 
+

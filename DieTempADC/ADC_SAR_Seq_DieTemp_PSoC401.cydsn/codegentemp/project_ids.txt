@@ -1,0 +1,6 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|58d03d48-5e1b-4511-ba54-3233107c627e
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|682b0c25-35f3-469e-aac8-36eea05a9f0d
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|117a8e91-e894-4e7b-9ed6-03bd77a463e0
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|fe8d3105-923f-40f2-90a9-69dd5982878b
+\\Mac\Home\Documents\Repos\PSOC4Pioneer\DieTempADC\ADC_SAR_Seq_DieTemp_PSoC401.cydsn\ADC_SAR_Seq_DieTemp_PSoC401.cyprj|4bcfe389-b034-475f-aac2-a36784d1a197
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|9e72cc93-861b-456e-99b4-06aaf4b139da

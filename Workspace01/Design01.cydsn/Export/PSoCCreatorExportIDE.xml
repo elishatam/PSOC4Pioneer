@@ -87,6 +87,11 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Pin_Vin.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Pin_Vin.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Pin_Vin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Timer.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Timer.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\Timer_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\isr_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC4\isr_1.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\Export\ARM_GCC_Generic">

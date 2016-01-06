@@ -23,6 +23,11 @@
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\ADC_SAR_Seq_INT.c" value="ARM_C_FILE;ADC_SAR_Seq" />
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\DieTemp.h" value="NONE;DieTemp" />
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\DieTemp.c" value="ARM_C_FILE;DieTemp" />
+  <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\Timer.c" value="ARM_C_FILE;Timer" />
+  <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\Timer.h" value="NONE;Timer" />
+  <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\Timer_PM.c" value="ARM_C_FILE;Timer" />
+  <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\isr_1.c" value="ARM_C_FILE;isr_1" />
+  <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\isr_1.h" value="NONE;isr_1" />
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\ADC_SAR_Seq_IRQ.c" value="ARM_C_FILE;ADC_SAR_Seq_IRQ" />
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\ADC_SAR_Seq_IRQ.h" value="NONE;ADC_SAR_Seq_IRQ" />
   <file name="\\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\codegentemp\ADC_SAR_Seq_intClock.c" value="ARM_C_FILE;ADC_SAR_Seq_intClock" />

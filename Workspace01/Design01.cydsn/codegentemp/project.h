@@ -22,6 +22,8 @@
 #include "Pin_Vin_aliases.h"
 #include "ADC_SAR_Seq.h"
 #include "DieTemp.h"
+#include "Timer.h"
+#include "isr_1.h"
 #include "ADC_SAR_Seq_IRQ.h"
 #include "ADC_SAR_Seq_intClock.h"
 #include "core_cm0_psoc4.h"

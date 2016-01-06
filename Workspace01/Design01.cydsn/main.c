@@ -24,6 +24,27 @@ volatile uint32 dataReady = 0u;
 volatile int16 result[ADC_SAR_Seq_TOTAL_CHANNELS_NUM];
 volatile uint32 timer_delay = 0u;
 
+uint16 ms_count = 0;
+
+/******************************************************************************
+* Function Name: MY_ISR
+*******************************************************************************
+*
+* Summary:
+*  Handle Interrupt Service Routine. Source - Timer.
+*
+******************************************************************************/
+CY_ISR(MY_ISR){
+    ms_count++;
+    
+    if(ms_count == 1000) {   //1 sec
+        //For every 1 second, enable injection channel for next scan
+        ADC_SAR_Seq_EnableInjection();
+        ms_count = 0; //reset ms counter
+    }
+}
+
+
 /******************************************************************************
 * Function Name: ADC_SAR_SEQ_ISR_LOC
 *******************************************************************************
@@ -56,6 +77,9 @@ int main()
     int32 temperature;
     
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+    Timer_Start(); //Configure and enable timer
+    isr_1_StartEx(MY_ISR); //Point to MY_ISR to carry out the interrupt sub-routine
+    
     //Init and start sequencing SAR ADC
     ADC_SAR_Seq_Start();
     ADC_SAR_Seq_StartConvert();
@@ -66,8 +90,7 @@ int main()
     for(;;)
     {
         /* Place your application code here. */
-        //For every 1 second, enable injection channel for next scan
-        ADC_SAR_Seq_EnableInjection();
+        
         
         //When conversion of the injection channel has completed
         if((dataReady & ADC_SAR_Seq_INJ_EOC_MASK) != 0u)

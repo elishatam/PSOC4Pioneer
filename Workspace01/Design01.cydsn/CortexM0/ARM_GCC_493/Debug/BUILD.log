@@ -1,12 +1,12 @@
---------------- Build Started: 01/05/2016 14:19:40 Project: Design01, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Build Started: 01/06/2016 10:40:43 Project: Design01, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM0\ARM_GCC_493\Debug\main.o
 .\main.c: In function 'ADC_SAR_SEQ_ISR_LOC':
-.\main.c:38:11: warning: unused variable 'temperature' [-Wunused-variable]
+.\main.c:59:11: warning: unused variable 'temperature' [-Wunused-variable]
      int32 temperature;
            ^
 .\main.c: In function 'main':
-.\main.c:56:11: warning: variable 'temperature' set but not used [-Wunused-but-set-variable]
+.\main.c:77:11: warning: variable 'temperature' set but not used [-Wunused-but-set-variable]
      int32 temperature;
            ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/cyfitter_cfg.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\cyfitter_cfg.c -o .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o
@@ -25,11 +25,14 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\P
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/ADC_SAR_Seq_IRQ.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\ADC_SAR_Seq_IRQ.c -o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_IRQ.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/ADC_SAR_Seq_intClock.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\ADC_SAR_Seq_intClock.c -o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_intClock.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/Pin_Vin.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\Pin_Vin.c -o .\CortexM0\ARM_GCC_493\Debug\Pin_Vin.o
-arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_493\Debug\Design01.a .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_493\Debug\CyFlash.o .\CortexM0\ARM_GCC_493\Debug\CyLib.o .\CortexM0\ARM_GCC_493\Debug\cyPm.o .\CortexM0\ARM_GCC_493\Debug\cyutils.o .\CortexM0\ARM_GCC_493\Debug\CyLFClk.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_PM.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_INT.o .\CortexM0\ARM_GCC_493\Debug\DieTemp.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_IRQ.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_intClock.o .\CortexM0\ARM_GCC_493\Debug\Pin_Vin.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/Timer.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\Timer.c -o .\CortexM0\ARM_GCC_493\Debug\Timer.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/Timer_PM.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\Timer_PM.c -o .\CortexM0\ARM_GCC_493\Debug\Timer_PM.o
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/isr_1.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\isr_1.c -o .\CortexM0\ARM_GCC_493\Debug\isr_1.o
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_493\Debug\Design01.a .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_493\Debug\CyFlash.o .\CortexM0\ARM_GCC_493\Debug\CyLib.o .\CortexM0\ARM_GCC_493\Debug\cyPm.o .\CortexM0\ARM_GCC_493\Debug\cyutils.o .\CortexM0\ARM_GCC_493\Debug\CyLFClk.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_PM.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_INT.o .\CortexM0\ARM_GCC_493\Debug\DieTemp.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_IRQ.o .\CortexM0\ARM_GCC_493\Debug\ADC_SAR_Seq_intClock.o .\CortexM0\ARM_GCC_493\Debug\Pin_Vin.o .\CortexM0\ARM_GCC_493\Debug\Timer.o .\CortexM0\ARM_GCC_493\Debug\Timer_PM.o .\CortexM0\ARM_GCC_493\Debug\isr_1.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_493\Debug\Design01.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_493\Debug\Design01.elf .\CortexM0\ARM_GCC_493\Debug\main.o .\CortexM0\ARM_GCC_493\Debug\cymetadata.o .\CortexM0\ARM_GCC_493\Debug\Cm0Start.o .\CortexM0\ARM_GCC_493\Debug\Design01.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m0 -mthumb -g -ffunction-sections -Og -L Generated_Source\PSoC4 -Wl,-Map,.\CortexM0\ARM_GCC_493\Debug/Design01.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
 cyelftool.exe -C \\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\CortexM0\ARM_GCC_493\Debug\Design01.elf --flash_row_size 128 --flash_size 32768
 cyelftool.exe -S \\Mac\Home\Documents\Repos\PSOC4Pioneer\Workspace01\Design01.cydsn\CortexM0\ARM_GCC_493\Debug\Design01.elf
-Flash used: 3328 of 32768 bytes (10.2 %).
+Flash used: 3840 of 32768 bytes (11.7 %).
 SRAM used: 1460 of 4096 bytes (35.6 %). Stack: 1024 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 01/05/2016 14:19:45 ---------------
+--------------- Build Succeeded: 01/06/2016 10:40:51 ---------------
